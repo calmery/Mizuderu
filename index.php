@@ -1,16 +1,39 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+
+<link rel="stylesheet" href="base.css">
+<style>
+    #post {
+        width: 100%;
+        height: 45px;
+        background: #fff;
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        line-height: 34pt;
+        color: #000;
+    }
+</style>
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 
-<div id="map" style="width: 400px; height: 280px;"></div>
+<a href="post.php">
+    <div id="post">投稿する</div>
+</a>
+
+<div id="map"></div>
 <script type="text/javascript">
     
-    map = new google.maps.Map(document.getElementById('map'), { // #sampleに地図を埋め込む
+    var m = document.getElementById('map')
+    m.style.width = window.innerWidth + 'px'
+    m.style.height = window.innerHeight - 45 + 'px'
+    
+    map = new google.maps.Map(m, { // #sampleに地図を埋め込む
         center: new google.maps.LatLng(32.7858659,130.7633434), // 地図の中心を指定
         zoom: 9, // 地図のズームを指定
         mapTypeId: google.maps.MapTypeId.ROADMAP
     })
     
     var position = <?php
-
 
         date_default_timezone_set('asia/tokyo');
         $connect = mysql_connect('localhost','root','pass');
@@ -19,7 +42,7 @@
 
         mysql_select_db('water');
 
-        $res = mysql_query('select * from info where time>16'. date('md') .'00');
+        $res = mysql_query('select * from info where time>16'. (date('m')-1). date('d') .'00');
         $json = '[';
         while( $usr = mysql_fetch_array($res) ){
             $json = $json. '{locate:"'. $usr['locate']. '",time:'. $usr['time'] .',flg:'. $usr['flg']. '},';
@@ -28,6 +51,8 @@
 
         echo $json;
 
+        mysql_close($connect);
+        
     ?>
 
     console.log( position )
@@ -43,4 +68,3 @@
     }
 
 </script>
-<a href="post.php">投稿する</a>
