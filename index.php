@@ -35,7 +35,8 @@
         <script>
             
             var map,
-                markers = ['no', 'ok', 'go']
+                // index 3 (marker 3) not exist
+                markers = ['no', 'ok', 'go', 'go']
             
             var m = document.getElementById( 'map' )
             m.style.width  = window.innerWidth + 'px'
