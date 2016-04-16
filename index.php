@@ -66,7 +66,7 @@
         new google.maps.Marker({
             position: new google.maps.LatLng(arr[0], arr[1]),
             map: map,
-            icon: ((position[i].flg ? "ok" : "no") + ".png")
+            icon: (position[i].flg == 1 ? "ok" : ( position[i].flg == 3?"go":"no") + ".png")
         })
     }
 

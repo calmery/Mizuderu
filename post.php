@@ -74,16 +74,18 @@
                 document.getElementById('locate').value = lat + ',' + lng
                 var latlng = new google.maps.LatLng( lat , lng ), flg
 
+                var flg = document.getElementById('flg').value
+                var icon = (flg == "1"
+                            ? "ok"
+                            : (flg == "3")
+                                ? "go"
+                                : "no") + ".png"
+                
                 new google.maps.Marker({
                     position: latlng,
                     map: map,
-                    icon: (((flg=document.getElementById('flg').value=="1")?"ok":"no") + ".png")
+                    icon: icon
                 })
-
-                console.log( flg )
-
-                if( flg ) document.getElementById('flg').value = 1
-                else document.getElementById('flg').value = 0
 
                 alert('間違いがなければ "投稿" ボタンをクリックしてください．')
             },
@@ -117,6 +119,7 @@
     <select name="flg" id="flg">
         <option value="1">水は出る</option>
         <option value="0">水は出ない</option>
+        <option value="3">水の提供ができる</option>
     </select>
     <input type="hidden" name="locate" id="locate" value="">
     <br><br>
