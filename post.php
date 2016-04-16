@@ -77,7 +77,7 @@
                 var flg = document.getElementById('flg').value
                 var icon = (flg == "1"
                             ? "ok"
-                            : (flg == "3")
+                            : (flg == "2")
                                 ? "go"
                                 : "no") + ".png"
                 
