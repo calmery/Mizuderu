@@ -1,25 +1,27 @@
 <?php
 
     if (isset($_POST["submit"])) {
-        
+
         $time = $_POST['time'];
         $flg = $_POST['flg'];
         $locate = $_POST['locate'];
 
         if( $time != '' && $flg != '' && $locate != '' ){
-        
-            $connect = mysql_connect('','','');
-            mysql_query("SET NAMES utf8",$connect);
-            mysql_set_charset("utf8", $connect);
 
-            mysql_select_db('');
+            require_once('dbconnect.php');
 
-            $res = mysql_query('insert into info ( time, locate, flg ) values ('. $time .', "'. $locate .'", '. $flg .');');
+            $connect = open_db();
+            mysqli_query($connect, "SET NAMES utf8");
+            mysqli_set_charset($connect, "utf8");
+
+            mysqli_select_db($connect, '');
+
+            $res = mysqli_query($connect, 'insert into info ( time, locate, flg ) values ('. $time .', "'. $locate .'", '. $flg .');');
             if( $res ) header("Location: index.php");
             else echo "不正な値が入力された可能性があります．";
 
-            mysql_close($connect);
-            
+            mysqli_close($connect);
+
         }else echo "不正な値が入力された可能性があります．投稿に失敗しました．";
     }
 
@@ -41,26 +43,26 @@
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 <script>
     window.onload = function(){
-        
+
         if( !navigator.geolocation ){
             document.getElementById('now').style.display = 'none'
         }
-        
+
         var m = document.getElementById('map')
         m.style.width = window.innerWidth + 'px'
         m.style.height = window.innerHeight - 160 + 'px'
-        
+
         map = new google.maps.Map(m, {
             center: new google.maps.LatLng(32.7858659,130.7633434),
             zoom: 9,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         })
-        
+
         var elem = document.getElementById( 'time' ), n
         elem.value = ((n = new Date()), '16' + ((n.getMonth()+1).toString().length>1?(n.getMonth()+1):'0'+(n.getMonth()+1)) + (n.getHours().toString().length>1?n.getHours():'0'+n.getHours())+(n.getMinutes().toString().length>1?n.getMinutes():'0'+n.getMinutes()))
-        
+
     }
-    
+
     function now(){
         navigator.geolocation.getCurrentPosition(
             function( position ){
@@ -68,21 +70,21 @@
 
                 var lat = data.latitude
                 var lng = data.longitude
-                
+
                 document.getElementById('locate').value = lat + ',' + lng
                 var latlng = new google.maps.LatLng( lat , lng ), flg
-                
+
                 new google.maps.Marker({
                     position: latlng,
                     map: map,
                     icon: (((flg=document.getElementById('flg').value=="1")?"ok":"no") + ".png")
                 })
-                
+
                 console.log( flg )
-                
+
                 if( flg ) document.getElementById('flg').value = 1
                 else document.getElementById('flg').value = 0
-                
+
                 alert('間違いがなければ "投稿" ボタンをクリックしてください．')
             },
 
