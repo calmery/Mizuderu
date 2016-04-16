@@ -8,11 +8,11 @@
 
         if( $time != '' && $flg != '' && $locate != '' ){
         
-            $connect = mysql_connect('localhost','root','pass');
+            $connect = mysql_connect('','','');
             mysql_query("SET NAMES utf8",$connect);
             mysql_set_charset("utf8", $connect);
 
-            mysql_select_db('water');
+            mysql_select_db('');
 
             $res = mysql_query('insert into info ( time, locate, flg ) values ('. $time .', "'. $locate .'", '. $flg .');');
             if( $res ) header("Location: index.php");
@@ -75,7 +75,7 @@
                 new google.maps.Marker({
                     position: latlng,
                     map: map,
-                    icon: (((document.getElementById('flg').value=="1")?"ok":"no") + ".png")
+                    icon: (((flg=document.getElementById('flg').value=="1")?"ok":"no") + ".png")
                 })
                 
                 console.log( flg )

@@ -36,11 +36,11 @@
     var position = <?php
 
         date_default_timezone_set('asia/tokyo');
-        $connect = mysql_connect('localhost','root','pass');
+        $connect = mysql_connect('','','');
         mysql_query("SET NAMES utf8",$connect);
         mysql_set_charset("utf8", $connect);
 
-        mysql_select_db('water');
+        mysql_select_db('');
 
         $res = mysql_query('select * from info where time>16'. (date('m')-1). date('d') .'00');
         $json = '[';
