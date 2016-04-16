@@ -82,7 +82,7 @@
                 new google.maps.Marker( {
                     position: new google.maps.LatLng( data[0], data[1] ),
                     map: map,
-                    icon: markers[position[i].flg]
+                    icon: markers[position[i].flg] + '.png'
                 } )
             }
             
