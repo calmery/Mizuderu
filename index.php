@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
-
+    
     <head>
         <meta charset="utf-8">
         <title>Watermap</title>
@@ -21,35 +21,36 @@
             }
         </style>
     </head>
-
+    
     <body>
-
+        
         <a href="post.php">
             <div id="postBtn">投稿する</div>
         </a>
-
+        
         <!-- View map -->
         <div id="map"></div>
-
+        
         <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
         <script>
-
+            
             var map,
-                markers = ['no.png', 'ok.png', 'go.png']
-
+                // index 3 (marker 3) not exist
+                markers = ['no', 'ok', 'go', 'go']
+            
             var m = document.getElementById( 'map' )
             m.style.width  = window.innerWidth + 'px'
-            m.style.height = window.innerHeight - 45 + 'px'
-
+            m.style.height = window.innerHeight - 45 + 'px' 
+            
             map = new google.maps.Map( m, {
                 center: new google.maps.LatLng( 32.7858659,130.7633434 ),
                 zoom: 9,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             } )
-
+            
             // Set Data
             var position = <?php
-
+                
                 date_default_timezone_set( 'asia/tokyo' );
                 require_once( 'dbconnect.php' );
 
@@ -70,11 +71,11 @@
                 echo $json;
 
                 mysqli_close( $connect );
-
+                
             ?>
-
+            
             // console.log( position ) // => [{Data},{Data}...,{}]
-
+                
             var data
             for( var i=0; i<position.length-1; i++ ){
                 data = position[i]['locate'].split(/,/)
@@ -82,12 +83,12 @@
                 new google.maps.Marker( {
                     position: new google.maps.LatLng( data[0], data[1] ),
                     map: map,
-                    icon: markers[position[i].flg]
+                    icon: markers[position[i].flg] + '.png'
                 } )
             }
-
+            
         </script>
-
+        
     </body>
-
+    
 </html>
