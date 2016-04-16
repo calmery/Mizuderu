@@ -113,8 +113,8 @@
     <span style="font-size:10px;">位置情報の設定できない場合，本体の設定から位置情報の利用を許可してください．</span>
     <br><br>
     <select name="flg" id="flg">
-        <option value="1">出る</option>
-        <option value="0">出ない</option>
+        <option value="1">水は出る</option>
+        <option value="0">水は出ない</option>
     </select>
     <input type="hidden" name="locate" id="locate" value="">
     <br><br>
