@@ -2,7 +2,7 @@
 function open_db()
 {
 
-  $local = false;
+  $local = true;
 
   if($local) {
     $dbhost = 'aa247qpcanfzbf.cjbydkyc8ulh.ap-northeast-1.rds.amazonaws.com';
