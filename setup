@@ -1,0 +1,4 @@
+mysql
+
+create database water;
+create table info ( time int, locate varchar(64), flg int(1) );
