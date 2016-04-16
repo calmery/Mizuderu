@@ -75,12 +75,8 @@
                 var latlng = new google.maps.LatLng( lat , lng ), flg
 
                 var flg = document.getElementById('flg').value
-                var icon = (flg == "1"
-                            ? "ok"
-                            : (flg == "2")
-                                ? "go"
-                                : "no") + ".png"
-                
+                var icon = (flg == "1" ? "ok" : (flg == "2") ? "go" : "no") + ".png"
+
                 new google.maps.Marker({
                     position: latlng,
                     map: map,
