@@ -119,7 +119,7 @@
     <select name="flg" id="flg">
         <option value="1">水は出る</option>
         <option value="0">水は出ない</option>
-        <option value="3">水の提供ができる</option>
+        <option value="2">水の提供ができる</option>
     </select>
     <input type="hidden" name="locate" id="locate" value="">
     <br><br>
