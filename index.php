@@ -22,48 +22,51 @@
 
 <div id="map"></div>
 <script type="text/javascript">
-    
+
     var m = document.getElementById('map')
     m.style.width = window.innerWidth + 'px'
     m.style.height = window.innerHeight - 45 + 'px'
-    
+
     map = new google.maps.Map(m, { // #sampleに地図を埋め込む
         center: new google.maps.LatLng(32.7858659,130.7633434), // 地図の中心を指定
         zoom: 9, // 地図のズームを指定
         mapTypeId: google.maps.MapTypeId.ROADMAP
     })
-    
+
     var position = <?php
 
         date_default_timezone_set('asia/tokyo');
-        $connect = mysql_connect('','','');
-        mysql_query("SET NAMES utf8",$connect);
-        mysql_set_charset("utf8", $connect);
+        require_once('dbconnect.php');
 
-        mysql_select_db('');
+        $connect = open_db();
 
-        $res = mysql_query('select * from info where time>16'. (date('m')-1). date('d') .'00');
+        mysqli_query($connect, "SET NAMES utf8");
+        mysqli_set_charset($connect, "utf8");
+
+        mysqli_select_db($connect, '');
+
+        $res = mysqli_query($connect, 'select * from info where time>16'. (date('m')-1). date('d') .'00');
         $json = '[';
-        while( $usr = mysql_fetch_array($res) ){
+        while( $usr = mysqli_fetch_array($res) ){
             $json = $json. '{locate:"'. $usr['locate']. '",time:'. $usr['time'] .',flg:'. $usr['flg']. '},';
         }
         $json = $json. '{}]';
 
         echo $json;
 
-        mysql_close($connect);
-        
+        mysqli_close($connect);
+
     ?>
 
     console.log( position )
-        
+
     var arr
     for( var i=0; i<position.length-1; i++ ){
         arr = position[i]['locate'].split(',')
         new google.maps.Marker({
             position: new google.maps.LatLng(arr[0], arr[1]),
             map: map,
-            icon: (position[i].flg ? "ok" : "no" + ".png")
+            icon: ((position[i].flg ? "ok" : "no") + ".png")
         })
     }
 
