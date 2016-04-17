@@ -26,9 +26,10 @@
         <br>
         <img src="no.png"> 水が出ない&nbsp;
         <img src="ok.png"> 水は出る&nbsp;
-        <img src="go.png"> 水の提供可能
+        <img src="go.png"> 水の提供可能&nbsp;&nbsp;&nbsp;
+        <button id="range-toggle">日付で絞る</button>
     </div>
-    <div id="time-range">
+    <div id="time-range" style="display:none">
         <p>
             <input type="text" id="amount" style="border: 0; color: #f6931f; font-weight: bold;" size="100"/>
         </p>
@@ -50,7 +51,11 @@
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 <script type="text/javascript" src="js/index.js"></script>
 <script type="text/javascript" src="js/timerange.js"></script>
-
+<script>
+    $( "#range-toggle" ).click(function() {
+        $( "#time-range" ).toggle( "fold", 1000 );
+    });
+</script>
 </body>
 
 </html>
