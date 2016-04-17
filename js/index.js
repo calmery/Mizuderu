@@ -37,7 +37,7 @@ function attachMessage(marker, post_time, flg) {
                 closeAllInfoWindows();
 
                 var ifw = new google.maps.InfoWindow({
-                    content: formattedTime + "<br>" + flg_str + "<br>" + result[0].formatted_address
+                    content: "<div class='infowin'>" + formattedTime + "<br>" + flg_str + "<br>" + result[0].formatted_address + "</div>"
                 });
 
                 ifw.open(marker.getMap(), marker);
