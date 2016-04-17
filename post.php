@@ -146,15 +146,20 @@ if( isset( $_POST['submit'] ) ){
             var elem = document.getElementById('time'),
                 n = new Date()
                 // Create time now
-            var month = n.getMonth() + 1,
-                hours = n.getHours(),
-                day = n.getDate(),
-                minutes = n.getMinutes()
-            month = month.toString().length > 1 ? month : '0' + month
-            hours = hours.toString().length > 1 ? hours : '0' + hours
-            day = day.toString().length > 1 ? day : '0' + day
-            minutes = minutes.toString().length > 1 ? minutes : '0' + minutes
-            elem.value = '16' + month + day + hours + minutes
+            //     n    = new Date()
+                //
+                // // Create time now
+                // var month   = n.getMonth() + 1,
+                //     hours   = n.getHours(),
+                //     day     = n.getDate(),
+                //     minutes = n.getMinutes()
+                //
+                // month   = month.toString().length > 1 ? month : '0' + month
+                // hours   = hours.toString().length > 1 ? hours : '0' + hours
+                // day     = day.toString().length > 1 ? day : '0' + day
+                // minutes = minutes.toString().length > 1 ? minutes : '0' + minutes
+                elem.value = ''+ Math.round(Date.now()/1000);//'16' + month + hours + minutes
+                console.log(elem.value);
             var nowPosition
             map.addListener('click', function (e) {
                 alert('位置を変更しました．間違いがなければ "投稿" ボタンをクリックしてください．')
