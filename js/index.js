@@ -37,7 +37,7 @@ function attachMessage(marker, post_time, flg) {
                 closeAllInfoWindows();
 
                 var ifw = new google.maps.InfoWindow({
-                    content: "<div class='infowin'>" + formattedTime + "<br>" + flg_str + "<br>" + result[0].formatted_address + "</div>"
+                    content: "<div class='infowin'>" + formattedTime + "<br>" + flg_str + "<br>" + result[0].formatted_address + "<br><br>" + "<a href='' onclick='document.del.submit();return false;'>この情報を削除する</a>" + "<form name='del' method='POST' action='delete.php'>" + "<input type=hidden name='post_time' value='" + post_time +"'> " + "</div>"
                 });
 
                 ifw.open(marker.getMap(), marker);
