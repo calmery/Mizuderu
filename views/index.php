@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
     <meta http-equiv="content-style-type" content="text/css">
     <meta http-equiv="content-script-type" content="text/javascript">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/index.css">
 </head>
@@ -27,6 +28,14 @@
         <img src="ok.png"> 水は出る&nbsp;
         <img src="go.png"> 水の提供可能
     </div>
+    <div id="time-range">
+        <p>
+            <input type="text" id="amount" style="border: 0; color: #f6931f; font-weight: bold;" size="100"/>
+        </p>
+        <input type="hidden" id="start" value="<?php echo $from_time; ?>" >
+        <input type="hidden" id="end" value="<?php echo $now; ?>" >
+        <div id="slider-range"></div>
+    </div>
 </div>
 
 <!-- View map -->
@@ -36,8 +45,10 @@
     <div id="big" class="float_l btn">ズームイン</div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 <script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/timerange.js"></script>
 
 </body>
 

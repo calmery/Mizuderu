@@ -28,3 +28,17 @@ body {
     text-align: center;
     margin-bottom: 10px;
 }
+
+#time-range {
+    margin: 20px;
+    text-align: center;
+}
+
+#time-range input {
+    max-width: 300px;
+    text-align: center;
+}
+
+#slider-range {
+    margin-top: 10px;
+}

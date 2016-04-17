@@ -1,51 +1,6 @@
 var data_source = $('#map').attr('data-source');
 var position = JSON.parse(data_source);
 
-var map,
-// index 3 (marker 3) not exist
-    markers = ['no', 'ok', 'go', 'go']
-
-var m = document.getElementById('map')
-
-map = new google.maps.Map(m, {
-    center: new google.maps.LatLng(32.7858659, 130.7633434),
-    zoom: 9,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-})
-
-m.style.width = window.innerWidth + 'px'
-m.style.height = window.innerHeight - (document.getElementById('tools').clientHeight) - 65 + 'px'
-
-// Set Data
-//var position = <?php echo $json; ?>
-
-//        console.log(position) // => [{Data},{Data}...,{}]
-
-//    var kmlUrl = "http://www.google.com/maps/d/u/0/kml?mid=16leszIlJkRUaq0o6cV9YY-cu3HM";
-//    var kmlLayer = new google.maps.KmlLayer(kmlUrl);
-//    kmlLayer.setMap(map);
-
-var data
-for (var i = 0; i < position.length - 1; i++) {
-    data = position[i]['locate'].split(/,/)
-    post_time = position[i]['time'];
-//        console.log(position[i].flg)
-    var myMarker = new google.maps.Marker({
-        position: new google.maps.LatLng(data[0], data[1]),
-        map: map,
-        icon: markers[position[i].flg] + '.png',
-    })
-    attachMessage(myMarker, post_time, markers[position[i].flg]);
-}
-
-document.getElementById('small').addEventListener('click', function () {
-    if (map.zoom > 0) map.setZoom(--map.zoom)
-})
-
-document.getElementById('big').addEventListener('click', function () {
-    map.setZoom(++map.zoom)
-})
-
 var infoWindows = [];
 
 function attachMessage(marker, post_time, flg) {
@@ -96,4 +51,72 @@ function closeAllInfoWindows() {
     for (var i = 0; i < infoWindows.length; i++) {
         infoWindows[i].close();
     }
+}
+
+function plotData(position) {
+
+    var map,
+// index 3 (marker 3) not exist
+        markers = ['no', 'ok', 'go', 'go']
+
+    var m = document.getElementById('map')
+
+    map = new google.maps.Map(m, {
+        center: new google.maps.LatLng(32.7858659, 130.7633434),
+        zoom: 9,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+
+    m.style.width = window.innerWidth + 'px'
+    m.style.height = window.innerHeight - (document.getElementById('tools').clientHeight) - 65 + 'px';
+
+    var data;
+    for (var i = 0; i < position.length - 1; i++) {
+        data = position[i]['locate'].split(/,/)
+        post_time = position[i]['time'];
+//        console.log(position[i].flg)
+        var myMarker = new google.maps.Marker({
+            position: new google.maps.LatLng(data[0], data[1]),
+            map: map,
+            icon: markers[position[i].flg] + '.png',
+        })
+        attachMessage(myMarker, post_time, markers[position[i].flg]);
+    }
+}
+// DOMを全て読み込んだあとに実行される
+$(function () {
+
+    plotData(position);
+
+    document.getElementById('small').addEventListener('click', function () {
+        if (map.zoom > 0) map.setZoom(--map.zoom)
+    });
+
+    document.getElementById('big').addEventListener('click', function () {
+        map.setZoom(++map.zoom)
+    });
+    loadData();
+});
+
+function loadData(){
+    $.ajax({
+            url: 'api.php',
+            type: 'get', // getかpostを指定(デフォルトは前者)
+            dataType: 'json', // 「json」を指定するとresponseがJSONとしてパースされたオブジェクトになる
+            data: { // 送信データを指定(getの場合は自動的にurlの後ろにクエリとして付加される)
+                map_start: $('#start').val(),
+                map_end: $('#end').val()
+            }
+        })
+        // ・ステータスコードは正常で、dataTypeで定義したようにパース出来たとき
+        .done(function (response) {
+            console.log(response);
+            console.log(response.length);
+            plotData(response);
+        })
+        // ・サーバからステータスコード400以上が返ってきたとき
+        // ・ステータスコードは正常だが、dataTypeで定義したようにパース出来なかったとき
+        // ・通信に失敗したとき
+        .fail(function () {
+        });
 }
