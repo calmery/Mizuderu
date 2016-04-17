@@ -25,7 +25,7 @@ function attachMessage(marker, post_time, flg) {
         if (flg == "no") {
             flg_str = '<img src="no.png" > 水が出ない';
         } else if (flg == "ok") {
-            flg_str = '<img src="ok.png" > 水は出る';
+            flg_str = '<img src="ok.png" > 水が出る';
         } else if (flg == "go") {
             flg_str = '<img src="go.png" > 水の提供可能';
         }
