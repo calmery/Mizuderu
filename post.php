@@ -33,7 +33,6 @@ if( isset( $_POST['submit'] ) ){
         if( $res ) header( 'Location: index.php' );
         else echo $err. '(01)';
         
-
         mysqli_close($connect);
 
     } else echo $err. '(02)';
@@ -96,6 +95,9 @@ if( isset( $_POST['submit'] ) ){
             </div>
             <div class="box">
                 <input type="submit" name="submit" value="投稿">
+            </div>
+            <div class="box">
+                <span class="memo">sojo univ. Patchworks</span>
             </div>
         </form>
 
