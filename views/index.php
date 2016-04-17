@@ -10,8 +10,15 @@
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/index.css">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="熊本県内の給水情報です。新しく情報を登録したいときは、画面上の「投稿する」をクリックします。そうすると画面が切り替わります。 ここで選択肢から「水が出ない」「水が出る」「水の提供可能」の３つからどれか選んで地図状にその位置をクリックすることで地点の設定ができます。 スマホなど現在地を取得できる機器であれば「現在地を設定」で今の位置を設定できます。 最後に「投稿」ボタンを押せが地図上にその情報が表示されます。">
+    <meta property="og:title" content="熊本地震：熊本給水マップ Wartermap">
+    <meta property="og:url" content="http://mizuderu.info/">
+    <meta property="og:image" content="http://mizuderu.info/Watermap.png">
+    <meta property="og:site_name" content="Watermap KUMAMOTO">
+    <meta property="og:locale" content="ja_JP" />
+    <meta property="fb:admins" content="301576.661927574">
 </head>
-
 <body>
 
 <div id="tools">
