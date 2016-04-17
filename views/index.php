@@ -17,7 +17,7 @@
     <meta property="og:image" content="http://mizuderu.info/Watermap.png">
     <meta property="og:site_name" content="Watermap KUMAMOTO">
     <meta property="og:locale" content="ja_JP" />
-    <meta property="fb:admins" content="301576.661927574">
+    <meta property="fb:admins" content="661927574">
 </head>
 <body>
 
