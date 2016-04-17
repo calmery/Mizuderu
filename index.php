@@ -19,11 +19,22 @@
                 line-height: 34pt;
                 color: #000;
             }
+            .question {
+                width: 100%;
+                height: 45px;
+                background: #fff;
+                text-align: center;
+                font-size: 16px;
+                line-height: 34pt;
+                color: #000;
+            }
         </style>
     </head>
 
     <body>
-
+        <div class="question">
+          あなたのいる場所では、水道から水が出ていますか？
+        </div>
         <a href="post.php">
             <div id="postBtn">投稿する</div>
         </a>
