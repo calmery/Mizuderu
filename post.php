@@ -2,10 +2,11 @@
 
 if( isset( $_POST['submit'] ) ){
 
-    $time   = $_POST['time'];
-    $flg    = $_POST['flg'];
-    $locate = $_POST['locate'];
-
+    $time    = $_POST['time'];
+    $flg     = $_POST['flg'];
+    $locate  = $_POST['locate'];
+    $comment = $_POST['comment'];
+    
     $err = '不正な値が入力された可能性があります．投稿に失敗しました．';
 
     if( $time != '' && $flg != '' && $locate != '' ){
@@ -17,15 +18,25 @@ if( isset( $_POST['submit'] ) ){
         mysqli_set_charset( $connect, 'utf8' );
 
         mysqli_select_db( $connect, '' );
-
-        $res = mysqli_query( $connect, 'insert into info ( time, locate, flg ) values ('. $time .', "'. $locate .'", '. $flg .');' );
+        
+        if( $comment == '' )
+            $comment = 'null';
+        
+        $time    = mysqli_real_escape_string( $connect, $time );
+        $locate  = mysqli_real_escape_string( $connect, $locate );
+        $flg     = mysqli_real_escape_string( $connect, $flg );
+        $comment = mysqli_real_escape_string( $connect, $comment );
+        
+        $query = "insert into info ( time, locate, flg, comment ) values (". $time .",'".  $locate ."',". $flg .", '". $comment ."');";
+        $res = mysqli_query( $connect, $query );
 
         if( $res ) header( 'Location: index.php' );
-        else echo $err;
+        else echo $err. '(01)';
+        
 
         mysqli_close($connect);
 
-    } echo $err;
+    } else echo $err. '(02)';
 
 }
 
@@ -43,10 +54,19 @@ if( isset( $_POST['submit'] ) ){
         <style>
             #post {
                 text-align: center;
-                height: 160px;
+                padding-bottom: 20px;
             }
             input[type=submit]{
                 width: 100%;
+            }
+            #comment {
+                width: 80%
+            }
+            .box {
+                margin-top: 20px
+            }
+            .memo {
+                font-size:10px
             }
         </style>
     </head>
@@ -54,22 +74,29 @@ if( isset( $_POST['submit'] ) ){
     <body>
 
         <form action="<?php print($_SERVER['PHP_SELF']) ?>" method="POST" id="post">
+           
             <input type="hidden" id="time" name="time" value="">
-            <br>
-            <select name="flg" id="flg" onchange="updateValue()">
-                <option value="0" selected>水が出ない</option>
-                <option value="1">水が出る</option>
-                <option value="2">水の提供ができる</option>
-            </select>
-            <br><br>
-            <div id='now'>
+            <input type="hidden" name="locate" id="locate" value="">
+            
+            <div class="box">
+                <select name="flg" id="flg" onchange="updateValue()">
+                    <option value="0" selected>水が出ない</option>
+                    <option value="1">水が出る</option>
+                    <option value="2">水の提供ができる</option>
+                </select>
+            </div>
+            <div id='now' class="box">
                 <a href="javascript:void(0)" onclick="now()">現在位置を設定</a>
                 <br><br>
-                <span style="font-size:10px">位置情報の設定できない場合，本体の設定から位置情報の利用を許可してください．</span>
+                <span class="memo">位置情報の設定できない場合，本体の設定から位置情報の利用を許可してください．</span>
             </div>
-            <input type="hidden" name="locate" id="locate" value="">
-            <br>
-            <input type="submit" name="submit" value="投稿">
+            <div class="box">
+                <span class="memo">一言コメントを添付できます．</span><br>
+                <input type="text" id="comment" name="comment" value="">
+            </div>
+            <div class="box">
+                <input type="submit" name="submit" value="投稿">
+            </div>
         </form>
 
         <div id="map"></div>
@@ -86,7 +113,7 @@ if( isset( $_POST['submit'] ) ){
 
                 var m = document.getElementById('map')
                 m.style.width  = window.innerWidth + 'px'
-                m.style.height = window.innerHeight - 160 + 'px'
+                m.style.height = window.innerHeight - (document.getElementById( 'post' ).clientHeight) + 'px'
 
                 map = new google.maps.Map( m, {
                     center: new google.maps.LatLng( 32.7858659,130.7633434 ),
@@ -100,13 +127,15 @@ if( isset( $_POST['submit'] ) ){
                 // Create time now
                 var month   = n.getMonth() + 1,
                     hours   = n.getHours(),
+                    day     = n.getDate(),
                     minutes = n.getMinutes()
 
                 month   = month.toString().length > 1 ? month : '0' + month
                 hours   = hours.toString().length > 1 ? hours : '0' + hours
+                day     = day.toString().length > 1 ? day : '0' + day
                 minutes = minutes.toString().length > 1 ? minutes : '0' + minutes
 
-                elem.value = '16' + month + hours + minutes
+                elem.value = '16' + month + day + hours + minutes
 
                 var nowPosition
                 map.addListener( 'click', function( e ){
