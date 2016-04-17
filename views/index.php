@@ -38,10 +38,12 @@
             </div>
         </div>
         <a href="javascript:void(0)">
-            <div id="range-toggle">日付で絞る</div>
+            <div id="range-toggle">日時で絞る</div>
         </a>
         <div id="time-range" style="display:none">
-            <input type="text" id="amount" style="background: #4A90E2; border:0;font-weight: bold;color:#fff;" size="100" />
+            <div style="background: rgba(240,240,240,1);padding:10px 0;">
+                <input type="text" id="amount" style="font-size:15px; background: rgba(240,240,240,1);color: #f6931f; border:0;font-weight: bold;" size="100" />
+            </div>
             <input type="hidden" id="start" value="<?php echo $from_time; ?>">
             <input type="hidden" id="end" value="<?php echo $now; ?>">
             <div id="slider-range"></div>

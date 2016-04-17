@@ -1,7 +1,6 @@
 #post {
     text-align: center;
-    background: #4A90E2;
-    color: #fff;
+    background: #fff;
     margin: 0;
     padding: 0;
     z-index: 999;
@@ -14,7 +13,7 @@
 .title {
     font-size: 13px;
     font-weight: bold;
-    background: rgba(104,174,255,1);
+    background: rgba(230,230,230,1);
     padding: 5px;
     margin-bottom: 15px;
 }
@@ -31,11 +30,11 @@ input[type=submit] {
 .box {
     margin-top: 15px;
     margin-bottom: 15px;
-    background: #4A90E2;
+    background: #fff;
     font-size: 13px;
 }
 .box a {
-    color: #fff;
+    color: #000;
     font-weight: bold;
     font-size: 15px;
     text-decoration: underline
@@ -55,7 +54,7 @@ select {
     margin: 0;
     font-size: 15px;
     font-weight: bold;
-    background: #4A90E2;
+    background: rgba(230,230,230,1);
     border: 0;
 }
 
@@ -64,9 +63,9 @@ input[type=submit]{
     height: 40px;
     -webkit-appearance: none;
     appearance: none;
-    color: #4A90E2;
+    color: #000;
     font-weight: bold;
-    background: #fff;
+    background: rgba(230,230,230,1);
     border: 0;
     font-size: 15px;
 }

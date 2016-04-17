@@ -6,14 +6,13 @@
 
 .memoMizu {
     font-size: 12px;
-    background: rgba(104,174,255,1);
+    background: rgba(230,230,230,1);
     padding: 5px 0;
 }
 #tools {
     width: 100%;
     padding-top: 15px;
-    background: #4A90E2;
-    color: #fff;
+    background: #fff;
     text-align: center;
     top: 0;
     left: 0;
@@ -22,7 +21,7 @@
     position: fixed;
 }
 #postBtn {
-    color: #fff;
+    color: #000;
     font-size: 20px;
     line-height: 15pt;
     padding-bottom: 15px;
@@ -33,8 +32,8 @@
     margin: 0 auto;
 }
 #colors {
-    background: #fff;
-    border-bottom: 2px solid #4A90E2;
+    background: rgba(230,230,230,1);
+    border-bottom: 2px solid #fff;
 }
 #center {
     width: 300px;
@@ -58,9 +57,10 @@
 }
 
 #range-toggle {
-    color: #fff;
+    color: #000;
     text-align: center;
     font-size: 13px;
+    font-weight: bold;
     padding: 10px 0 ;
 }
 #time-range {
@@ -69,10 +69,11 @@
 }
 
 #time-range input {
+    background: rgba(0,0,0,1);
     max-width: 300px;
     text-align: center;
 }
 
 #slider-range {
-    margin-top: 10px;
+    margin-top: 15px;
 }
