@@ -2,7 +2,7 @@
 function open_db()
 {
 
-  if(!$_SERVER['RDS_MY_DB_NAME']) {
+  if(!isset($_SERVER['RDS_MY_DB_NAME'])) {
     $dbhost = 'aa247qpcanfzbf.cjbydkyc8ulh.ap-northeast-1.rds.amazonaws.com';
     $dbport = 3306;
     $dbname = 'water';
