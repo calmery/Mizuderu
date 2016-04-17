@@ -25,7 +25,7 @@ function attachMessage(marker, post_time, flg) {
         if (flg == "no") {
             flg_str = '<img src="no.png" > 水が出ない';
         } else if (flg == "ok") {
-            flg_str = '<img src="ok.png" > 水は出る';
+            flg_str = '<img src="ok.png" > 水が出る';
         } else if (flg == "go") {
             flg_str = '<img src="go.png" > 水の提供可能';
         }
@@ -37,7 +37,7 @@ function attachMessage(marker, post_time, flg) {
                 closeAllInfoWindows();
 
                 var ifw = new google.maps.InfoWindow({
-                    content: formattedTime + "<br>" + flg_str + "<br>" + result[0].formatted_address
+                    content: "<div class='infowin'>" + formattedTime + "<br>" + flg_str + "<br>" + result[0].formatted_address + "</div>"
                 });
 
                 ifw.open(marker.getMap(), marker);
@@ -113,7 +113,7 @@ $(function () {
     plotData(position);
 
 
-    loadData();
+    //loadData();
 });
 
 function loadData(){
@@ -128,8 +128,8 @@ function loadData(){
         })
         // ・ステータスコードは正常で、dataTypeで定義したようにパース出来たとき
         .done(function (response) {
-            console.log(response);
-            console.log(response.length);
+            // console.log(response);
+            // console.log(response.length);
             plotData(response);
         })
         // ・サーバからステータスコード400以上が返ってきたとき

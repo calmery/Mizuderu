@@ -2,7 +2,7 @@
 
 if( isset( $_POST['submit'] ) ){
 
-    $time    = $_POST['time'];
+    $time    = time();
     $flg     = $_POST['flg'];
     $locate  = $_POST['locate'];
     $comment = $_POST['comment'];
