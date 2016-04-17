@@ -69,9 +69,12 @@
                 $res = mysqli_query( $connect, $query);
                 $json = '[';
                 while( $data = mysqli_fetch_array( $res ) ){
-                    $json = $json. '{locate:"'. $data['locate']. '",time:'. $data['time'] .',flg:'. $data['flg']. '},';
+                    $json = $json. json_encode($data);
+                    //$json = $json. '{locate:"'. $data['locate']. '",time:'. $data['time'] .',flg:'. $data['flg']. '},';
+                    $json = $json.',';
                 }
                 $json = $json. '{}]';
+                error_log($json);
 
                 echo $json;
 
@@ -79,7 +82,7 @@
 
             ?>
 
-            // console.log( position ) // => [{Data},{Data}...,{}]
+            console.log( position ) // => [{Data},{Data}...,{}]
 
             var data
             for( var i=0; i<position.length-1; i++ ){

@@ -7,6 +7,8 @@ if( isset( $_POST['submit'] ) ){
     $locate  = $_POST['locate'];
     $comment = $_POST['comment'];
 
+    error_log("Post:".$time.",".$flg.",".$locate.",".$commnet);
+
     $err = '不正な値が入力された可能性があります．投稿に失敗しました．';
 
     if( $time != '' && $flg != '' && $locate != '' ){
@@ -89,10 +91,11 @@ if( isset( $_POST['submit'] ) ){
                 <br><br>
                 <span class="memo">位置情報の設定できない場合，本体の設定から位置情報の利用を許可してください．</span>
             </div>
-            <div class="box">
+            <input type="hidden" id="comment" name="comment" value="">
+            <!-- <div class="box">
                 <span class="memo">一言コメントを添付できます．</span><br>
                 <input type="text" id="comment" name="comment" value="">
-            </div>
+            </div> -->
             <div class="box">
                 <input type="submit" name="submit" value="投稿">
             </div>
@@ -123,19 +126,19 @@ if( isset( $_POST['submit'] ) ){
                     mapTypeId: google.maps.MapTypeId.ROADMAP
                 } )
 
-                var elem = document.getElementById( 'time' ),
-                    n    = new Date()
-
-                // Create time now
-                var month   = n.getMonth() + 1,
-                    hours   = n.getHours(),
-                    day     = n.getDate(),
-                    minutes = n.getMinutes()
-
-                month   = month.toString().length > 1 ? month : '0' + month
-                hours   = hours.toString().length > 1 ? hours : '0' + hours
-                day     = day.toString().length > 1 ? day : '0' + day
-                minutes = minutes.toString().length > 1 ? minutes : '0' + minutes
+                var elem = document.getElementById( 'time' );
+                //     n    = new Date()
+                //
+                // // Create time now
+                // var month   = n.getMonth() + 1,
+                //     hours   = n.getHours(),
+                //     day     = n.getDate(),
+                //     minutes = n.getMinutes()
+                //
+                // month   = month.toString().length > 1 ? month : '0' + month
+                // hours   = hours.toString().length > 1 ? hours : '0' + hours
+                // day     = day.toString().length > 1 ? day : '0' + day
+                // minutes = minutes.toString().length > 1 ? minutes : '0' + minutes
 
                 elem.value = ''+ Math.round(Date.now()/1000);//'16' + month + hours + minutes
                 console.log(elem.value);
