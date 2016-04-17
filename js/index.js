@@ -98,17 +98,35 @@ $(function () {
     plotData(position);
 
 
+    // var map_flg;
+    // $('[name=water_flg]').change(function() {
+    //     map_flg = $('[name="water_flg"]:checked').map(function(){
+    //         return 'map_flg[]=' + $(this).val()
+    //     }).get().join('&');
+    // });
+
     //loadData();
+
+    $('[name=water_flg]').change(function() {
+        loadData();
+    });
 });
 
 function loadData(){
+
+    var map_flg;
+    map_flg = $('[name="water_flg"]:checked').map(function(){
+        return $(this).val()
+    }).get().join(',');
+
     $.ajax({
             url: 'api.php',
             type: 'get', // getかpostを指定(デフォルトは前者)
             dataType: 'json', // 「json」を指定するとresponseがJSONとしてパースされたオブジェクトになる
             data: { // 送信データを指定(getの場合は自動的にurlの後ろにクエリとして付加される)
                 map_start: $('#start').val(),
-                map_end: $('#end').val()
+                map_end: $('#end').val(),
+                map_flg: map_flg
             }
         })
         // ・ステータスコードは正常で、dataTypeで定義したようにパース出来たとき

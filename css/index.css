@@ -30,19 +30,31 @@ body {
 }
 
 #time-range {
-    margin: 20px;
+    float: right;
+    width: 70%;
     text-align: center;
 }
 
 #time-range input {
-    max-width: 300px;
+    width: 250px;
     text-align: center;
 }
 
 #slider-range {
+    margin-right: 10px;
     margin-top: 10px;
 }
 
 .infowin {
     line-height: 18px;
+}
+
+#water_filter{
+    float: left;
+    width: 30%;
+    text-align: left;
+}
+#filter_options{
+    overflow: auto;
+    margin: 5px;
 }

@@ -84,7 +84,7 @@ while ($data = mysqli_fetch_array($res)) {
 }
 $from_time = strtotime(getDateRound(date("Y-m-d H:i:s", $arr[0]['time']), 100, "floor"));
 $now = strtotime(getDateRound(date("Y-m-d H:i:s", $now), 100, "ceil"));
-$json = json_safe_encode($arr, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT);
+$json = json_safe_encode($arr);
 //error_log($json);
 
 mysqli_close($connect);

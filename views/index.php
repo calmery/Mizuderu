@@ -29,13 +29,20 @@
         <img src="go.png"> 水の提供可能&nbsp;&nbsp;&nbsp;
         <button id="range-toggle">日時で絞る</button>
     </div>
-    <div id="time-range" style="display:none">
-        <p>
-            <input type="text" id="amount" style="border: 0; color: #f6931f; font-weight: bold;" size="100"/>
-        </p>
-        <input type="hidden" id="start" value="<?php echo $from_time; ?>" >
-        <input type="hidden" id="end" value="<?php echo $now + 1800; ?>" >
-        <div id="slider-range"></div>
+    <div id="filter_options" class="memo" style="display:none">
+        <div id="water_filter">
+            <input name="water_flg" type="checkbox" value="0"><img src="no.png"> 水が出ない<br />
+            <input name="water_flg" type="checkbox" value="1"><img src="ok.png"> 水が出る<br />
+            <input name="water_flg" type="checkbox" value="2"><img src="go.png"> 水の提供可能<br />
+        </div>
+        <div id="time-range">
+            <p>
+                <input type="text" id="amount" style="border: 0; color: #f6931f; font-weight: bold;" size="100"/>
+            </p>
+            <input type="hidden" id="start" value="<?php echo $from_time; ?>" >
+            <input type="hidden" id="end" value="<?php echo $now + 1800; ?>" >
+            <div id="slider-range"></div>
+        </div>
     </div>
 </div>
 
@@ -53,7 +60,7 @@
 <script type="text/javascript" src="js/timerange.js"></script>
 <script>
     $( "#range-toggle" ).click(function() {
-        $( "#time-range" ).toggle( "fold", 1000 );
+        $( "#filter_options" ).toggle( "fold", 1000 );
     });
 </script>
 </body>
