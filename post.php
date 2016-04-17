@@ -74,7 +74,7 @@ if( isset( $_POST['submit'] ) ){
 
     <body>
 
-        <form action="<?php print($_SERVER['PHP_SELF']) ?>" method="POST" id="post">
+        <form action="<?php print($_SERVER['PHP_SELF']) ?>" method="POST" id="post" onsubmit="return confirm('内容を確認後，送信してください．送信しますか？');">
 
             <input type="hidden" id="time" name="time" value="">
             <input type="hidden" name="locate" id="locate" value="">
