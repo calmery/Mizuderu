@@ -63,35 +63,45 @@ function plotData(position) {
     window.DEFAULT_LNG = 130.7633434;
     window.DEFAULT_ZOOM = 9;
 
+    // 変更が加えられた際は SessionStorage から読み込む
+    var data   = JSON.parse( sessionStorage.getItem( 'google-map-post-location' ) ),
+        center = new google.maps.LatLng(data ? data.lat : window.DEFAULT_LAT, data ? data.lng : window.DEFAULT_LNG ),
+        zoom   = data ? data.zoom : window.DEFAULT_ZOOM
+    
     var map = new google.maps.Map(m, {
-        center: new google.maps.LatLng(window.DEFAULT_LAT, window.DEFAULT_LNG),
-        zoom: window.DEFAULT_ZOOM,
+        center: center,
+        zoom: zoom,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     });
 
     m.style.width = window.innerWidth + 'px';
     m.style.height = window.innerHeight - (tools_height) - 65 + 'px';
 
-    $('#js-post-button').click(function (event) {
-
+    // イベント発生時にストレージに保存
+    function setStorage(){
         var currentCenter = map.getCenter();
         var ss = {
             lat: currentCenter.lat() || window.DEFAULT_LAT,
             lng: currentCenter.lng() ||window.DEFAULT_LNG,
             zoom: map.getZoom() || window.DEFAULT_ZOOM
         };
-
         sessionStorage.setItem('google-map-post-location', JSON.stringify(ss));
-
+        return ss
+    }
+    
+    $('#js-post-button').click(function (event) {
+        setStorage()
         console.log('google-map-post-location', sessionStorage.getItem('google-map-post-location'));
     });
 
     document.getElementById('small').addEventListener('click', function () {
         if (map.zoom > 0) map.setZoom(--map.zoom)
+        setStorage()
     });
 
     document.getElementById('big').addEventListener('click', function () {
         map.setZoom(++map.zoom)
+        setStorage()
     });
     
     var data;
