@@ -2,7 +2,7 @@
 function open_db()
 {
 
-  $local = true;
+  $local = false;
 
   if($local) {
     $dbhost = 'aa247qpcanfzbf.cjbydkyc8ulh.ap-northeast-1.rds.amazonaws.com';
@@ -23,6 +23,11 @@ function open_db()
     $password = $_SERVER['RDS_PASSWORD'];
 
   }
+  error_log($dbhost);
+  error_log($dbport);
+  error_log($dbname);
+  error_log($username);
+  error_log($password);
 
   return mysqli_connect($dbhost, $username, $password, $dbname, $dbport);
 }
