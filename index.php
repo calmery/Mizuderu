@@ -27,5 +27,5 @@ error_log($json);
 
 mysqli_close($connect);
 
-include 'view.php';
+include 'views/index.php';
 
