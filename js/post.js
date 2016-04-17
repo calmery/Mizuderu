@@ -1,23 +1,36 @@
 document.getElementById('small').addEventListener('click', function () {
     if (map.zoom > 0) map.setZoom(--map.zoom)
-})
+});
 
 document.getElementById('big').addEventListener('click', function () {
     map.setZoom(++map.zoom)
-})
+});
+
+// 前画面で保存したデータを削除
+$('#js-submit-button').click(function (e) {
+    sessionStorage.clear();
+});
+
 var map,
     markers = ['no', 'ok', 'go'],
-    marker = 0 // Selected marker
+    marker = 0 ;// Selected marker
 if (!navigator.geolocation)
-    document.getElementById('now').style.display = 'none'
-var m = document.getElementById('map')
+    document.getElementById('now').style.display = 'none';
+var m = document.getElementById('map');
+
+var currentMap; // 前の画面から表示データを取得する
+try {
+    currentMap = JSON.parse(sessionStorage.getItem('google-map-post-location'));
+} catch (e) {
+    console.error(e);
+}
 
 map = new google.maps.Map(m, {
-    center: new google.maps.LatLng(32.7858659, 130.7633434),
-    zoom: 9,
+    center: new google.maps.LatLng(currentMap.lat || 32.7858659, currentMap.lng || 130.7633434),
+    zoom: currentMap.zoom || 9,
     mapTypeId: google.maps.MapTypeId.ROADMAP
-})
-m.style.width = window.innerWidth + 'px'
+});
+m.style.width = window.innerWidth + 'px';
 m.style.height = window.innerHeight - (document.getElementById('post').clientHeight) - 80 + 'px';
 var elem = document.getElementById('time'),
     n = new Date()
@@ -50,7 +63,7 @@ map.addListener('click', function (e) {
         map: map,
         icon: markers[marker] + '.png'
     })
-})
+});
 
 function now() {
     navigator.geolocation.getCurrentPosition(function (position) {
@@ -70,19 +83,19 @@ function now() {
             alert('間違いがなければ "投稿" ボタンをクリックしてください．')
         },
         function (error) {
-            var err_msg
+            var errMsg;
             switch (error.code) {
                 case 1:
-                    errMsg = "位置情報の利用が許可されていません．設定から位置情報の使用を許可してください．"
-                    break
+                    errMsg = "位置情報の利用が許可されていません．設定から位置情報の使用を許可してください．";
+                    break;
                 case 2:
-                    errMsg = "デバイスの位置が判定できません．"
-                    break
+                    errMsg = "デバイスの位置が判定できません．";
+                    break;
                 case 3:
-                    errMsg = "タイムアウトしました．"
-                    break
+                    errMsg = "タイムアウトしました．";
+                    break;
             }
-            alert("位置情報の取得に失敗しました．" + errMsg)
+            alert("位置情報の取得に失敗しました．" + errMsg);
         }
     )
 }
