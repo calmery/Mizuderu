@@ -17,7 +17,7 @@
     <div id="tools">
         <a href="post.php">
             <div id="postBtn">
-                <span class="memo">水は出ますか？</span>
+                <div class="memoMizu">水は出ますか？</div>
                 <br>投稿する
             </div>
         </a>
