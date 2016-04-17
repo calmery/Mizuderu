@@ -55,21 +55,36 @@ function closeAllInfoWindows() {
 }
 
 function plotData(position) {
+    // index 3 (marker 3) not exist
+    var markers = ['no', 'ok', 'go', 'go'];
 
-    var map,
-// index 3 (marker 3) not exist
-        markers = ['no', 'ok', 'go', 'go']
+    var m = document.getElementById('map');
+    window.DEFAULT_LAT = 32.7858659;
+    window.DEFAULT_LNG = 130.7633434;
+    window.DEFAULT_ZOOM = 9;
 
-    var m = document.getElementById('map')
-
-    map = new google.maps.Map(m, {
-        center: new google.maps.LatLng(32.7858659, 130.7633434),
-        zoom: 9,
+    var map = new google.maps.Map(m, {
+        center: new google.maps.LatLng(window.DEFAULT_LAT, window.DEFAULT_LNG),
+        zoom: window.DEFAULT_ZOOM,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     });
 
-    m.style.width = window.innerWidth + 'px'
+    m.style.width = window.innerWidth + 'px';
     m.style.height = window.innerHeight - (tools_height) - 65 + 'px';
+
+    $('#js-post-button').click(function (event) {
+
+        var currentCenter = map.getCenter();
+        var ss = {
+            lat: currentCenter.lat() || window.DEFAULT_LAT,
+            lng: currentCenter.lng() ||window.DEFAULT_LNG,
+            zoom: map.getZoom() || window.DEFAULT_ZOOM
+        };
+
+        sessionStorage.setItem('google-map-post-location', JSON.stringify(ss));
+
+        console.log('google-map-post-location', sessionStorage.getItem('google-map-post-location'));
+    });
 
     document.getElementById('small').addEventListener('click', function () {
         if (map.zoom > 0) map.setZoom(--map.zoom)
@@ -87,8 +102,8 @@ function plotData(position) {
         var myMarker = new google.maps.Marker({
             position: new google.maps.LatLng(data[0], data[1]),
             map: map,
-            icon: markers[position[i].flg] + '.png',
-        })
+            icon: markers[position[i].flg] + '.png'
+        });
         attachMessage(myMarker, post_time, markers[position[i].flg]);
     }
 }

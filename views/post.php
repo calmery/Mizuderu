@@ -37,7 +37,7 @@
     </div>
     -->
     <div class="box">
-        <input type="submit" name="submit" value="投稿">
+        <input type="submit" id="js-submit-button" name="submit" value="投稿">
     </div>
     <div class="box">
         <span class="memo">sojo univ. patchworks</span>
@@ -49,6 +49,7 @@
     <div id="small" class="float_l btn">ズームアウト</div>
     <div id="big" class="float_l btn">ズームイン</div>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 <script type="text/javascript" src="js/post.js"></script>
 
