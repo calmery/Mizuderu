@@ -14,7 +14,9 @@
 .title {
     font-size: 13px;
     font-weight: bold;
-    padding-bottom: 15px;
+    background: rgba(104,174,255,1);
+    padding: 5px;
+    margin-bottom: 15px;
 }
 
 
