@@ -61,13 +61,17 @@
 </div>
 
 <!-- View map -->
-<div id="map"></div>
+<div id="map" data-source='<?php echo $json; ?>'></div>
 <div id="customZoomBtn">
     <div id="small" class="float_l btn">ズームアウト</div>
     <div id="big" class="float_l btn">ズームイン</div>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 <script>
+    var data_source = $('#map').attr('data-source');
+    var position = JSON.parse(data_source);
+    
     var map,
     // index 3 (marker 3) not exist
         markers = ['no', 'ok', 'go', 'go']
@@ -84,7 +88,7 @@
     m.style.height = window.innerHeight - (document.getElementById('tools').clientHeight) - 65 + 'px'
 
     // Set Data
-    var position = <?php echo $json; ?>
+    //var position = <?php echo $json; ?>
 
     //        console.log(position) // => [{Data},{Data}...,{}]
 
