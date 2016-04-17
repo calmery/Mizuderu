@@ -1,17 +1,19 @@
 <?php
 
     if( isset( $_POST['submit'] ) ){
-        
+
         $time   = $_POST['time'];
         $flg    = $_POST['flg'];
         $locate = $_POST['locate'];
-        
+
         $err = '不正な値が入力された可能性があります．投稿に失敗しました．';
-        
+
         if( $time != '' && $flg != '' && $locate != '' ){
-            
+
+          error_log('time='.$time);
+
             require_once( 'dbconnect.php' );
-            
+
             $connect = open_db();
             mysqli_query( $connect, 'SET NAMES utf8' );
             mysqli_set_charset( $connect, 'utf8' );
@@ -19,20 +21,20 @@
             mysqli_select_db( $connect, '' );
 
             $res = mysqli_query( $connect, 'insert into info ( time, locate, flg ) values ('. $time .', "'. $locate .'", '. $flg .');' );
-            
+
             if( $res ) header( 'Location: index.php' );
             else echo $err;
 
             mysqli_close($connect);
-            
+
         } echo $err;
-        
+
     }
 
 ?>
 <!DOCTYPE html>
 <html lang="ja">
-    
+
     <head>
         <meta charset="utf-8">
         <title>Watermap Post</title>
@@ -50,9 +52,9 @@
             }
         </style>
     </head>
-    
+
     <body>
-       
+
         <form action="<?php print($_SERVER['PHP_SELF']) ?>" method="POST" id="post">
             <input type="hidden" id="time" name="time" value="">
             <br>
@@ -73,41 +75,42 @@
         </form>
 
         <div id="map"></div>
-        
+
         <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
         <script>
-            
+
             var map,
                 markers = ['no', 'ok', 'go'],
                 marker  = 0 // Selected marker
-            
+
             if( !navigator.geolocation )
                 document.getElementById( 'now' ).style.display = 'none'
-            
+
             var m = document.getElementById('map')
             m.style.width  = window.innerWidth + 'px'
             m.style.height = window.innerHeight - 160 + 'px'
-            
+
             map = new google.maps.Map( m, {
                 center: new google.maps.LatLng( 32.7858659,130.7633434 ),
                 zoom: 9,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             } )
-            
-            var elem = document.getElementById( 'time' ), 
+
+            var elem = document.getElementById( 'time' ),
                 n    = new Date()
-            
+
             // Create time now
             var month   = n.getMonth() + 1,
                 hours   = n.getHours(),
                 minutes = n.getMinutes()
-            
+
             month   = month.toString().length > 1 ? month : '0' + month
             hours   = hours.toString().length > 1 ? hours : '0' + hours
             minutes = minutes.toString().length > 1 ? minutes : '0' + minutes
-            
-            elem.value = '16' + month + hours + minutes
-            
+
+            elem.value = ''+ Math.round(Date.now()/1000);//'16' + month + hours + minutes
+            console.log(elem.value);
+
             var nowPosition
             map.addListener( 'click', function( e ){
                 var latlng = e.latLng
@@ -122,7 +125,7 @@
                     icon: markers[marker] + '.png'
                 } )
             } )
-            
+
             function now(){
                 navigator.geolocation.getCurrentPosition( function( position ){
                     var data = position.coords
@@ -161,29 +164,29 @@
                     }
                 )
             }
-            
+
             function updateValue(){
                 if( !nowPosition ) return
-                
+
                 var n1 = nowPosition.position.lat(),
                     n2 = nowPosition.position.lng()
-                
+
                 marker = Number( document.getElementById( 'flg' ).value )
-                
+
                 nowPosition.setMap( null )
-                
+
                 nowPosition = new google.maps.Marker( {
                     position: new google.maps.LatLng( n1, n2 ),
                     map: map,
                     icon: markers[marker] + '.png'
                 } )
-                
+
                 return true
-                
+
             }
-            
+
         </script>
-        
+
     </body>
-    
+
 </html>
