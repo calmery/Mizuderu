@@ -71,6 +71,14 @@ function plotData(position) {
     m.style.width = window.innerWidth + 'px'
     m.style.height = window.innerHeight - (tools_height) - 65 + 'px';
 
+    document.getElementById('small').addEventListener('click', function () {
+        if (map.zoom > 0) map.setZoom(--map.zoom)
+    });
+
+    document.getElementById('big').addEventListener('click', function () {
+        map.setZoom(++map.zoom)
+    });
+    
     var data;
     for (var i = 0; i < position.length - 1; i++) {
         data = position[i]['locate'].split(/,/)
@@ -89,13 +97,7 @@ $(function () {
 
     plotData(position);
 
-    document.getElementById('small').addEventListener('click', function () {
-        if (map.zoom > 0) map.setZoom(--map.zoom)
-    });
 
-    document.getElementById('big').addEventListener('click', function () {
-        map.setZoom(++map.zoom)
-    });
     loadData();
 });
 
