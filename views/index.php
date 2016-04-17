@@ -35,7 +35,9 @@
         }
 
         .memo {
-            font-size: 10px
+            font-size: 10px;
+            text-align: center;
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -50,23 +52,20 @@
         <div id="postBtn">投稿する</div>
     </a>
 
-        <span class="memo">
-               <br>
-                <img src="no.png"> 水が出ない&nbsp;
-                <img src="ok.png"> 水は出る&nbsp;
-                <img src="go.png"> 水の提供可能
-            </span>
-    <br>
-    <br>
-    <div id="customZoomBtn">
-        <div id="small" class="float_l btn">ズームアウト</div>
-        <div id="big" class="float_l btn">ズームイン</div>
+    <div class="memo">
+        <br>
+        <img src="no.png"> 水が出ない&nbsp;
+        <img src="ok.png"> 水は出る&nbsp;
+        <img src="go.png"> 水の提供可能
     </div>
 </div>
 
 <!-- View map -->
 <div id="map"></div>
-
+<div id="customZoomBtn">
+    <div id="small" class="float_l btn">ズームアウト</div>
+    <div id="big" class="float_l btn">ズームイン</div>
+</div>
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 <script>
     var map,
@@ -82,7 +81,7 @@
     })
 
     m.style.width = window.innerWidth + 'px'
-    m.style.height = window.innerHeight - (document.getElementById('tools').clientHeight) + 'px'
+    m.style.height = window.innerHeight - (document.getElementById('tools').clientHeight) - 65 + 'px'
 
     // Set Data
     var position = <?php echo $json; ?>
