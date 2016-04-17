@@ -125,6 +125,7 @@ table,th,td,img {
     height: 45px;
     color: #fff;
     font-size: 15px;
+    font-weight: bold;
     line-height: 34pt;
 }
 body {
