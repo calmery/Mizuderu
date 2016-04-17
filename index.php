@@ -33,7 +33,8 @@
 
     <body>
         <div class="question">
-          あなたのいる場所では、水道から水が出ていますか？
+          あなたのいる場所では、<br>
+          水道から水が出ていますか？
         </div>
         <a href="post.php">
             <div id="postBtn">投稿する</div>
