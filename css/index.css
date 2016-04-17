@@ -1,0 +1,72 @@
+.memo {
+    font-size: 10px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#tools {
+    width: 100%;
+    padding-top: 15px;
+    background: #4A90E2;
+    color: #fff;
+    text-align: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    position: fixed;
+}
+#postBtn {
+    color: #fff;
+    font-size: 20px;
+    line-height: 15pt;
+    padding-bottom: 15px;
+}
+#center {
+    width: 300px;
+    margin: 0 auto;
+}
+#colors {
+    background: #fff;
+    border-bottom: 2px solid #4A90E2;
+}
+#center {
+    width: 300px;
+    margin: 0 auto;
+    color: #000;
+    height: 20px;
+    padding: 5px 0;
+    font-size: 10px;
+}
+.color {
+    float: left;
+    width: 100px;
+}
+#colors .color .pallet {
+    width: 20px;
+    height: 20px;
+}
+#colors .color .palletText {
+    line-height: 15pt;
+    padding-left: 5px;
+}
+
+#range-toggle {
+    color: #fff;
+    text-align: center;
+    font-size: 13px;
+    padding: 10px 0 ;
+}
+#time-range {
+    margin: 20px;
+    text-align: center;
+}
+
+#time-range input {
+    max-width: 300px;
+    text-align: center;
+}
+
+#slider-range {
+    margin-top: 10px;
+}

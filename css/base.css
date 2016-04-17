@@ -107,3 +107,32 @@ table,th,td,img {
 .clearfix {
     min-height:1px;
 }
+
+/* common */
+#customZoomBtn {
+    width: 100%;
+    background: #4A90E2;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: fixed;
+    z-index: 999;
+}
+#customZoomBtn .btn {
+    /* width: calc(50%-2px) */
+    width: 50%;
+    text-align: center;
+    height: 45px;
+    color: #fff;
+    font-size: 15px;
+    line-height: 34pt;
+}
+body {
+    font-family: sans-serif
+}
+#map {
+    z-index: 1;
+    position: fixed;
+    left: 0;
+    right: 0;
+}
