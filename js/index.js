@@ -3,6 +3,7 @@ var position = JSON.parse(data_source);
 
 var infoWindows = [];
 
+var tools_height = document.getElementById('tools').clientHeight;
 function attachMessage(marker, post_time, flg) {
     google.maps.event.addListener(marker, 'click', function (event) {
 
@@ -68,7 +69,7 @@ function plotData(position) {
     });
 
     m.style.width = window.innerWidth + 'px'
-    m.style.height = window.innerHeight - (document.getElementById('tools').clientHeight) - 75 + 'px';
+    m.style.height = window.innerHeight - (tools_height) - 65 + 'px';
 
     var data;
     for (var i = 0; i < position.length - 1; i++) {
