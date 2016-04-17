@@ -98,7 +98,7 @@ $(function () {
     plotData(position);
 
 
-    loadData();
+    //loadData();
 });
 
 function loadData(){
@@ -113,8 +113,8 @@ function loadData(){
         })
         // ・ステータスコードは正常で、dataTypeで定義したようにパース出来たとき
         .done(function (response) {
-            console.log(response);
-            console.log(response.length);
+            // console.log(response);
+            // console.log(response.length);
             plotData(response);
         })
         // ・サーバからステータスコード400以上が返ってきたとき

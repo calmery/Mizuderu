@@ -34,7 +34,7 @@
             <input type="text" id="amount" style="border: 0; color: #f6931f; font-weight: bold;" size="100"/>
         </p>
         <input type="hidden" id="start" value="<?php echo $from_time; ?>" >
-        <input type="hidden" id="end" value="<?php echo $now; ?>" >
+        <input type="hidden" id="end" value="<?php echo $now + 1800; ?>" >
         <div id="slider-range"></div>
     </div>
 </div>
