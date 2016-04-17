@@ -97,7 +97,7 @@ if( isset( $_POST['submit'] ) ){
                 <input type="submit" name="submit" value="投稿">
             </div>
             <div class="box">
-                <span class="memo">sojo univ. Patchworks</span>
+                <span class="memo">sojo univ. patchworks</span>
             </div>
         </form>
 
