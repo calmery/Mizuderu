@@ -52,8 +52,8 @@
 
         <span class="memo">
                <br>
-                <img src="no.png"> 水が出ない<br>
-                <img src="ok.png"> 水は出る<br>
+                <img src="no.png"> 水が出ない&nbsp;
+                <img src="ok.png"> 水は出る&nbsp;
                 <img src="go.png"> 水の提供可能
             </span>
     <br>
