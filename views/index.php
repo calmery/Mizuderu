@@ -9,10 +9,14 @@
     <meta http-equiv="content-script-type" content="text/javascript">
     <link rel="stylesheet" href="base.css">
     <style>
+        body {
+            font-family: sans-serif
+        }
+
         #postBtn {
             width: 100%;
             height: 45px;
-            background: #fff;
+            background: rgba(240, 240, 240, 1);
             text-align: center;
             font-size: 20px;
             font-weight: bold;
@@ -20,39 +24,56 @@
             color: #000;
         }
 
-        .question {
-            width: 100%;
-            height: 45px;
-            background: #fff;
+        .btn {
+            width: 50%;
+            height: 40px;
+            font-size: 20px;
+            font-weight: bold;
+            background: rgba(240, 240, 240, 1);
+            line-height: 28pt;
             text-align: center;
-            font-size: 16px;
-            line-height: 34pt;
-            color: #000;
+        }
+
+        .memo {
+            font-size: 10px
         }
     </style>
 </head>
 
 <body>
-<div class="question">
-    水道から水が出ていますか？
+
+<div id="tools">
+    <div style="margin:15px 0;text-align:center">
+        水道から水が出ていますか？
+    </div>
+    <a href="post.php">
+        <div id="postBtn">投稿する</div>
+    </a>
+
+        <span class="memo">
+               <br>
+                <img src="no.png"> 水が出ない<br>
+                <img src="ok.png"> 水は出る<br>
+                <img src="go.png"> 水の提供可能
+            </span>
+    <br>
+    <br>
+    <div id="customZoomBtn">
+        <div id="small" class="float_l btn">ズームアウト</div>
+        <div id="big" class="float_l btn">ズームイン</div>
+    </div>
 </div>
-<a href="post.php">
-    <div id="postBtn">投稿する</div>
-</a>
 
 <!-- View map -->
 <div id="map"></div>
 
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 <script>
-
     var map,
     // index 3 (marker 3) not exist
         markers = ['no', 'ok', 'go', 'go']
 
     var m = document.getElementById('map')
-    m.style.width = window.innerWidth + 'px'
-    m.style.height = window.innerHeight - 45 + 'px'
 
     map = new google.maps.Map(m, {
         center: new google.maps.LatLng(32.7858659, 130.7633434),
@@ -60,14 +81,17 @@
         mapTypeId: google.maps.MapTypeId.ROADMAP
     })
 
+    m.style.width = window.innerWidth + 'px'
+    m.style.height = window.innerHeight - (document.getElementById('tools').clientHeight) + 'px'
+
     // Set Data
     var position = <?php echo $json; ?>
 
-//        console.log(position) // => [{Data},{Data}...,{}]
+    //        console.log(position) // => [{Data},{Data}...,{}]
 
-//    var kmlUrl = "http://www.google.com/maps/d/u/0/kml?mid=16leszIlJkRUaq0o6cV9YY-cu3HM";
-//    var kmlLayer = new google.maps.KmlLayer(kmlUrl);
-//    kmlLayer.setMap(map);
+    //    var kmlUrl = "http://www.google.com/maps/d/u/0/kml?mid=16leszIlJkRUaq0o6cV9YY-cu3HM";
+    //    var kmlLayer = new google.maps.KmlLayer(kmlUrl);
+    //    kmlLayer.setMap(map);
 
     var data
     for (var i = 0; i < position.length - 1; i++) {
@@ -82,12 +106,20 @@
         attachMessage(myMarker, post_time, markers[position[i].flg]);
     }
 
+    document.getElementById('small').addEventListener('click', function () {
+        if (map.zoom > 0) map.setZoom(--map.zoom)
+    })
+
+    document.getElementById('big').addEventListener('click', function () {
+        map.setZoom(++map.zoom)
+    })
+
     var infoWindows = [];
 
     function attachMessage(marker, post_time, flg) {
-        google.maps.event.addListener(marker, 'click', function(event) {
+        google.maps.event.addListener(marker, 'click', function (event) {
 
-            var t = new Date( post_time*1000 );
+            var t = new Date(post_time * 1000);
 
             var year = t.getFullYear();
             var month = t.getMonth() + 1;
@@ -102,16 +134,16 @@
             var formattedTime = year + "年" + month + "月" + date + "日" + hours + '時' + minutes.substr(-2) + '分' + seconds.substr(-2) + "秒";
 
             var flg_str = "";
-            if(flg == "no"){
+            if (flg == "no") {
                 flg_str = '<img src="no.png" > 水が出ない';
-            }else if(flg == "ok") {
+            } else if (flg == "ok") {
                 flg_str = '<img src="ok.png" > 水は出る';
-            }else if(flg == "go") {
+            } else if (flg == "go") {
                 flg_str = '<img src="go.png" > 水の提供可能';
             }
             new google.maps.Geocoder().geocode({
                 latLng: marker.getPosition()
-            }, function(result, status) {
+            }, function (result, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
 
                     closeAllInfoWindows();
@@ -129,12 +161,10 @@
     }
 
     function closeAllInfoWindows() {
-        for (var i=0;i<infoWindows.length;i++) {
+        for (var i = 0; i < infoWindows.length; i++) {
             infoWindows[i].close();
         }
     }
-
-
 </script>
 
 </body>
