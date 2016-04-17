@@ -5,19 +5,19 @@ $(function () {
         range: true,
         min: from_time,
         max: now,
-        step: 3600,
+        step: 1800,
         values: [from_time, now],
         slide: function (event, ui) {
             $("#start").val(ui.values[0]);
             $("#end").val(ui.values[1]);
-            $("#amount").val(formatDate(new Date(ui.values[0] * 1000), "MM月DD日hh時") + " - " + formatDate(new Date(ui.values[1] * 1000), "MM月DD日hh時"));
+            $("#amount").val(formatDate(new Date(ui.values[0] * 1000), "MM月DD日hh時mm分") + " - " + formatDate(new Date(ui.values[1] * 1000), "MM月DD日hh時mm分"));
         },
         stop: function( event, ui ) {
             loadData();
         }
     });
-    $("#amount").val((formatDate(new Date($("#slider-range").slider("values", 0) * 1000), "MM月DD日hh時")) +
-        " - " + (formatDate(new Date($("#slider-range").slider("values", 1) * 1000), "MM月DD日hh時")));
+    $("#amount").val((formatDate(new Date($("#slider-range").slider("values", 0) * 1000), "MM月DD日hh時mm分")) +
+        " - " + (formatDate(new Date($("#slider-range").slider("values", 1) * 1000), "MM月DD日hh時mm分")));
 });
 
 /**

@@ -13,7 +13,7 @@ mysqli_select_db($connect, '');
 $now = time();
 $from_time = $now - (60 * 60 * 24 * 2);
 error_log($from_time);
-$query = 'select * from info where time>' . $from_time;
+$query = 'select * from info where time>' . $from_time . ' order by time asc';
 error_log($query);
 $res = mysqli_query($connect, $query);
 
@@ -28,6 +28,7 @@ while ($data = mysqli_fetch_array($res)) {
 //    $json = $json . ',';
     $arr[] = $data;
 }
+$from_time = $arr[0]['time'];
 $json = json_safe_encode($arr, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT);
 error_log($json);
 
