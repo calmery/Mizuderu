@@ -81,7 +81,7 @@ if( isset( $_POST['submit'] ) ){
 
     <body>
 
-        <form action="<?php print($_SERVER['PHP_SELF']) ?>" method="POST" id="post">
+        <form action="<?php print($_SERVER['PHP_SELF']) ?>" method="POST" id="post" onsubmit="return confirm('送信してもいいですか？');">
 
 
             <input type="hidden" id="time" name="time" value="">
