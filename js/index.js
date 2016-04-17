@@ -68,7 +68,7 @@ function plotData(position) {
     });
 
     m.style.width = window.innerWidth + 'px'
-    m.style.height = window.innerHeight - (document.getElementById('tools').clientHeight) - 65 + 'px';
+    m.style.height = window.innerHeight - (document.getElementById('tools').clientHeight) - 75 + 'px';
 
     var data;
     for (var i = 0; i < position.length - 1; i++) {
