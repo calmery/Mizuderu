@@ -24,7 +24,7 @@ if (count($flgs) > 0 && ($flgs[0]) != "") {
     }
     $params[] = $f;
 } else {
-    $sql .= " AND flg NOT IN(0,1,2)";
+    $sql .= " AND flg NOT IN(0,1,2,3)";
 }
 
 $rows = DB::conn()->rows($sql, $params);
