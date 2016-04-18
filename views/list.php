@@ -51,7 +51,7 @@
 
             echo "<tr>";
             echo "<td>" . $a["Id"] . "</td>";
-            echo "<td>" . $a["time"] . "</td>";
+            echo "<td>" . date("Y/m/d H:i:s", $a["time"]) . "</td>";
             echo "<td>" . $a["locate"] . "</td>";
 //            echo "<td>" . $a["locate"] . "</td>";
             echo "<td>" . $flg_str . "</td>";
