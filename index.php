@@ -87,6 +87,10 @@ $now = strtotime(getDateRound(date("Y-m-d H:i:s", $now), 100, "ceil"));
 $json = json_safe_encode($arr);
 //error_log($json);
 
+//echo '<pre>';
+//print_r($arr);
+//exit;
+
 mysqli_close($connect);
 
 include 'views/index.php';

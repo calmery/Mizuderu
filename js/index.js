@@ -4,7 +4,7 @@ var position = JSON.parse(data_source);
 var infoWindows = [];
 
 var tools_height = document.getElementById('tools').clientHeight;
-function attachMessage(marker, post_time, flg) {
+function attachMessage(marker, post_time, flg, comment) {
     google.maps.event.addListener(marker, 'click', function (event) {
 
         var t = new Date(post_time * 1000);
@@ -29,6 +29,10 @@ function attachMessage(marker, post_time, flg) {
         } else if (flg == "go") {
             flg_str = '<img src="go.png" > 水の提供可能';
         }
+
+        var comment_str = "";
+        comment_str = comment;
+
         new google.maps.Geocoder().geocode({
             latLng: marker.getPosition()
         }, function (result, status) {
@@ -37,7 +41,7 @@ function attachMessage(marker, post_time, flg) {
                 closeAllInfoWindows();
 
                 var ifw = new google.maps.InfoWindow({
-                    content: "<div class='infowin'>" + formattedTime + "<br>" + flg_str + "<br>" + result[0].formatted_address + "</div>"
+                    content: "<div class='infowin'>" + formattedTime + "<br>" + flg_str + " " + comment_str + "<br>" + result[0].formatted_address + "</div>"
                 });
 
                 ifw.open(marker.getMap(), marker);
@@ -113,13 +117,14 @@ function plotData(position) {
     for (var i = 0; i < position.length - 1; i++) {
         data = position[i]['locate'].split(/,/)
         post_time = position[i]['time'];
+        comment = position[i]['comment'];
 //        console.log(position[i].flg)
         var myMarker = new google.maps.Marker({
             position: new google.maps.LatLng(data[0], data[1]),
             map: map,
             icon: markers[position[i].flg] + '.png'
         });
-        attachMessage(myMarker, post_time, markers[position[i].flg]);
+        attachMessage(myMarker, post_time, markers[position[i].flg], comment);
     }
 }
 // DOMを全て読み込んだあとに実行される
