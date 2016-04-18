@@ -12,7 +12,7 @@
 </head>
 
 <body>
-
+<?php include_once("analyticstracking.php") ?>
 <form action="<?php print($_SERVER['PHP_SELF']) ?>" enctype="multipart/form-data" method="POST" id="post" onsubmit="return confirm('送信してもいいですか？');">
     <input type="hidden" id="time" name="time" value="">
     <input type="hidden" name="locate" id="locate" value="">
@@ -28,7 +28,7 @@
         <a href="javascript:void(0)" onclick="now()">現在位置を設定</a>
         <br>
         <br>
-        <span class="memo">位置情報の設定できない場合，本体の設定から位置情報の利用を許可してください．</span>
+        <span class="memo">本体の設定から位置情報の利用を許可してください．</span>
     </div>
 <!--    <div class="box">-->
 <!--        <span class="memo">画像アップロード</span><br>-->

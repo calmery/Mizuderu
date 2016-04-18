@@ -3,7 +3,7 @@
 
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#  website: http://ogp.me/ns/website#">
     <meta charset="utf-8">
-    <title>Watermap</title>
+    <title>MIZUDERU.INFO</title>
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="keywords" content="熊本地震,給水,みずでる,水道">
     <meta http-equiv="content-style-type" content="text/css">
@@ -24,7 +24,7 @@
     <!-- OGP -->
 </head>
 <body>
-
+<?php include_once("analyticstracking.php") ?>
 <div id="tools">
     <div style="margin:15px 0;text-align:center">
         水道から水が出ていますか？
