@@ -67,6 +67,7 @@ body {
     /*font-weight: bold;*/
     line-height: 15px;
     font-size: 11px;
+    height: 44px;
 }
 
 .owl-carousel .item a {
