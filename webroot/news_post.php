@@ -1,9 +1,5 @@
 <?php
-/**
- * TODO: 使ってるところ見つからなかったのと、DBスキーマ情報がなかったので一旦放置
- * @KeisukeUtsumi
- */
-
+require_once("../bootstrap.php");
 
 if( isset( $_POST['submit'] ) ){
 
@@ -16,28 +12,17 @@ if( isset( $_POST['submit'] ) ){
 
     if( $title != '' && $url != ''){
 
-        require_once('dbconnect.php');
+        $sql = "INSERT INTO news SET title = :title, url = :url";
+        $params = ["title"    => $title ,
+            "url"  => $url ,
+        ];
 
-        $connect = open_db();
-        mysqli_query( $connect, 'SET NAMES utf8' );
-        mysqli_set_charset( $connect, 'utf8' );
-
-        mysqli_select_db( $connect, '' );
-
-        $title    = mysqli_real_escape_string( $connect, $title );
-        $url  = mysqli_real_escape_string( $connect, $url );
-
-        $query = "insert into news ( title, url ) values ( '". $title ."','".  $url . "');";
-
-        $res = mysqli_query( $connect, $query );
-
-        if( $res ) header( 'Location: index.php' );
-        else echo $err. '(01)';
-
-        mysqli_close($connect);
+        DB::conn()->query($sql , $params);
+        header('Location: index.php');
 
 
-    } else echo $err. '(02)';
+    }
+    echo $err .PHP_EOL;
 }
 
-include 'views/news_post.php';
+include VIEW_DIR . '/news_post.php';
