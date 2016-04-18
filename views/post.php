@@ -28,7 +28,7 @@
         <a href="javascript:void(0)" onclick="now()">現在位置を設定</a>
         <br>
         <br>
-        <span class="memo">位置情報の設定できない場合，本体の設定から位置情報の利用を許可してください．</span>
+        <span class="memo">本体の設定から位置情報の利用を許可してください．</span>
     </div>
 <!--    <div class="box">-->
 <!--        <span class="memo">画像アップロード</span><br>-->
