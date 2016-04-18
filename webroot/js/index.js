@@ -138,11 +138,20 @@ function plotData(t_position) {
     removeMarkers();
 
     var data;
+    var no_count = 0, ok_count = 0, go_count = 0;
     for (var i = 0; i < t_position.length; i++) {
         data = t_position[i]['locate'].split(/,/)
         post_time = t_position[i]['time'];
         comment = t_position[i]['comment'];
-//        console.log(t_position[i].flg)
+
+        if (t_position[i]['flg'] == 0) {
+            no_count++;
+        } else if (t_position[i]['flg'] == 1) {
+            ok_count++;
+        } else if (t_position[i]['flg'] == 2) {
+            go_count++;
+        }
+
         var myMarker = new google.maps.Marker({
             position: new google.maps.LatLng(data[0], data[1]),
             map: map,
@@ -151,6 +160,9 @@ function plotData(t_position) {
         gmarkers.push(myMarker);
         attachMessage(myMarker, post_time, markers[t_position[i].flg], comment);
     }
+    $("#no_count").text("(" + no_count + ")");
+    $("#ok_count").text("(" + ok_count + ")");
+    $("#go_count").text("(" + go_count + ")");
 }
 // DOMを全て読み込んだあとに実行される
 $(function () {
@@ -165,7 +177,7 @@ $(function () {
     //     }).get().join('&');
     // });
 
-    //loadData();
+    loadData();
     loadNews();
 
     $('[name=water_flg]').change(function() {

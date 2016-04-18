@@ -15,14 +15,15 @@ $params = [
     $from_time,
     $end
 ];
-if (count($flgs) > 0 && !empty($flgs[0])) {
+
+if (count($flgs) > 0 && ($flgs[0]) != "") {
     $sql .= " AND flg IN(?)";
     $f = [];
-    foreach($flgs as $flg) {
+    foreach ($flgs as $flg) {
         $f[] = VerifyFlag($flg);
     }
     $params[] = $f;
-}else {
+} else {
     $sql .= " AND flg NOT IN(0,1,2)";
 }
 
