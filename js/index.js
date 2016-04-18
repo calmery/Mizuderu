@@ -78,6 +78,7 @@ function plotData(position) {
     m.style.height = window.innerHeight - (tools_height) - 65 + 'px';
 
     // イベント発生時にストレージに保存
+    // マップの情報を保存
     function setStorage(){
         var currentCenter = map.getCenter();
         var ss = {
@@ -88,7 +89,11 @@ function plotData(position) {
         sessionStorage.setItem('google-map-post-location', JSON.stringify(ss));
         return ss
     }
-    
+
+    google.maps.event.addListener(map, 'zoom_changed', function() {
+        setStorage()
+    });
+
     $('#js-post-button').click(function (event) {
         setStorage()
         console.log('google-map-post-location', sessionStorage.getItem('google-map-post-location'));
