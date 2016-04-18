@@ -1,51 +1,31 @@
 <?php
+require_once("../bootstrap.php");
 
-header('Content-Type: application/json');
-
-date_default_timezone_set('asia/tokyo');
-require_once('dbconnect.php');
-
-$connect = open_db();
-
-mysqli_query($connect, 'SET NAMES utf8');
-mysqli_set_charset($connect, 'utf8');
-
-mysqli_select_db($connect, '');
 $end = $_GET['map_end'];
 $from_time = $_GET['map_start'];
-$flg = explode(",", $_GET["map_flg"]);
+$flgs = explode(",", $_GET["map_flg"]);
+
+// format
+$end = strtotime(date("Y-m-d H:i:s", (int)$end));
+$from_time = strtotime(date("Y-m-d H:i:s", (int)$from_time));
 
 
-
-$query = 'select * from info where time > ' . $from_time . ' AND time < ' . $end;
-
-if(!empty($flg)){
-    $query .= " AND (";
-    foreach($flg as $f){
-        $query .= " flg =" . $f;
-        if ($f !== end($flg)) {
-            $query .= " OR ";
-        }
+$sql = "SELECT * FROM info WHERE time > ? AND time < ?";
+$params = [
+    $from_time,
+    $end
+];
+if (count($flgs) > 0) {
+    $sql .= " AND flg IN(?)";
+    $f = [];
+    foreach($flgs as $flg) {
+        $f[] = VerifyFlag($flg);
     }
-    $query .= " ) ";
+    $params[] = $f;
 }
 
-$res = mysqli_query($connect, $query);
+$rows = DB::conn()->rows($sql, $params);
 
-function json_safe_encode($data)
-{
-    return json_encode($data, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT);
-}
-
-$arr = array();
-
-while ($data = mysqli_fetch_array($res)) {
-    $arr[] = $data;
-}
-
-$json = json_safe_encode($arr);
-//error_log($arr);
-
-mysqli_close($connect);
+$json = json_safe_encode($rows);
 
 echo $json;

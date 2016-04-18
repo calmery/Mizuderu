@@ -1,4 +1,9 @@
 <?php
+/**
+ * TODO: 使ってるところ見つからなかったのと、DBスキーマ情報がなかったので一旦放置
+ * @KeisukeUtsumi
+ */
+
 
 if( isset( $_POST['submit'] ) ){
 
