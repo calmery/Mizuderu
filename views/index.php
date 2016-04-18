@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <title>Watermap</title>
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="keywords" content="熊本地震,給水,みずでる,水道">
     <meta http-equiv="content-style-type" content="text/css">
     <meta http-equiv="content-script-type" content="text/javascript">
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
