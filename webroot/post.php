@@ -15,7 +15,7 @@ if( isset( $_POST['submit'] ) ){
 
     if( $time != '' && $flg != '' && $locate != '' ){
 
-        require_once( 'dbconnect.php' );
+        require_once('dbconnect.php');
 
         $connect = open_db();
         mysqli_query( $connect, 'SET NAMES utf8' );

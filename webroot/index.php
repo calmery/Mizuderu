@@ -1,8 +1,9 @@
 <?php
 
-date_default_timezone_set('asia/tokyo');
-require_once('dbconnect.php');
+require_once("../bootstrap.php");
 
+
+exit;
 $connect = open_db();
 
 mysqli_query($connect, 'SET NAMES utf8');
