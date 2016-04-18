@@ -32,7 +32,7 @@
             <th>#</th>
             <th>時間</th>
             <th>場所</th>
-<!--            <th>住所</th>-->
+            <th>住所</th>
             <th>ステータス</th>
             <th>コメント</th>
         </tr>
@@ -53,7 +53,7 @@
             echo "<td>" . $a["Id"] . "</td>";
             echo "<td>" . date("Y/m/d H:i:s", $a["time"]) . "</td>";
             echo "<td>" . $a["locate"] . "</td>";
-//            echo "<td>" . $a["locate"] . "</td>";
+            echo "<td>" . $a["address"] . "</td>";
             echo "<td>" . $flg_str . "</td>";
             echo "<td>" . $a["comment"] . "</td>";
             echo "</tr>";
