@@ -44,7 +44,7 @@ while ($data = mysqli_fetch_array($res)) {
 }
 
 $json = json_safe_encode($arr);
-//error_log($json);
+//error_log($arr);
 
 mysqli_close($connect);
 

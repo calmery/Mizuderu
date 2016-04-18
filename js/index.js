@@ -1,6 +1,7 @@
 var data_source = $('#map').attr('data-source');
 var position = JSON.parse(data_source);
 
+var gmarkers = [];
 var infoWindows = [];
 
 var tools_height = document.getElementById('tools').clientHeight;
@@ -58,7 +59,7 @@ function closeAllInfoWindows() {
     }
 }
 
-function plotData(position) {
+function plotData(t_position) {
     // index 3 (marker 3) not exist
     var markers = ['no', 'ok', 'go', 'go'];
 
@@ -103,28 +104,31 @@ function plotData(position) {
         console.log('google-map-post-location', sessionStorage.getItem('google-map-post-location'));
     });
 
-    document.getElementById('small').addEventListener('click', function () {
-        if (map.zoom > 0) map.setZoom(--map.zoom)
-        setStorage()
-    });
+    // document.getElementById('small').addEventListener('click', function () {
+    //     if (map.zoom > 0) map.setZoom(--map.zoom)
+    //     setStorage()
+    // });
+    //
+    // document.getElementById('big').addEventListener('click', function () {
+    //     map.setZoom(++map.zoom)
+    //     setStorage()
+    // });
 
-    document.getElementById('big').addEventListener('click', function () {
-        map.setZoom(++map.zoom)
-        setStorage()
-    });
-    
+    removeMarkers();
+
     var data;
-    for (var i = 0; i < position.length - 1; i++) {
-        data = position[i]['locate'].split(/,/)
-        post_time = position[i]['time'];
-        comment = position[i]['comment'];
-//        console.log(position[i].flg)
+    for (var i = 0; i < t_position.length; i++) {
+        data = t_position[i]['locate'].split(/,/)
+        post_time = t_position[i]['time'];
+        comment = t_position[i]['comment'];
+//        console.log(t_position[i].flg)
         var myMarker = new google.maps.Marker({
             position: new google.maps.LatLng(data[0], data[1]),
             map: map,
-            icon: markers[position[i].flg] + '.png'
+            icon: markers[t_position[i].flg] + '.png'
         });
-        attachMessage(myMarker, post_time, markers[position[i].flg], comment);
+        gmarkers.push(myMarker);
+        attachMessage(myMarker, post_time, markers[t_position[i].flg], comment);
     }
 }
 // DOMを全て読み込んだあとに実行される
@@ -175,4 +179,10 @@ function loadData(){
         // ・通信に失敗したとき
         .fail(function () {
         });
+}
+
+function removeMarkers(){
+    for(i=0; i<gmarkers.length; i++){
+        gmarkers[i].setMap(null);
+    }
 }
