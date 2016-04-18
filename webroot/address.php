@@ -8,18 +8,21 @@ $arr = DB::conn()->rows($query, [$from_time]);
 
 
 foreach($arr as $a){
-    $query = array(
-        "latlng" => $a["locate"],
-        "language" => "ja",
-        "sensor" => false
-    );
-    $res = callApi("GET", "https://maps.googleapis.com/maps/api/geocode/json", $query);
 
-    $address= $res["results"][0]["formatted_address"];
+    if(empty($a["address"])){
+        $query = array(
+            "latlng" => $a["locate"],
+            "language" => "ja",
+            "sensor" => false
+        );
+        $res = callApi("GET", "https://maps.googleapis.com/maps/api/geocode/json", $query);
 
-    $query = "UPDATE info SET address = '" . $address . "' WHERE Id = " . $a["Id"] . ";";
+        $address= $res["results"][0]["formatted_address"];
 
-    DB::conn()->query($query, [$address]);
+        $query = "UPDATE info SET address = '" . $address . "' WHERE Id = " . $a["Id"] . ";";
+
+        DB::conn()->query($query, [$address]);
+    }
 }
 
 
