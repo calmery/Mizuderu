@@ -27,7 +27,7 @@
     <div style="margin:15px 0;text-align:center">
         水道から水が出ていますか？
     </div>
-    
+
     <a href="post.php" id="js-post-button">
         <div id="postBtn">投稿する</div>
     </a>

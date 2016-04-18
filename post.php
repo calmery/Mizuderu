@@ -1,5 +1,7 @@
 <?php
 
+require 'vendor/autoload.php';
+
 if( isset( $_POST['submit'] ) ){
 
     $time    = time();
@@ -7,7 +9,7 @@ if( isset( $_POST['submit'] ) ){
     $locate  = $_POST['locate'];
     $comment = $_POST['comment'];
 
-    error_log("Post:".$time.",".$flg.",".$locate.",".$commnet);
+    error_log("Post:".$time.",".$flg.",".$locate.",".$comment);
 
     $err = '不正な値が入力された可能性があります．投稿に失敗しました．';
 
@@ -30,6 +32,7 @@ if( isset( $_POST['submit'] ) ){
         $comment = mysqli_real_escape_string( $connect, $comment );
 
         $query = "insert into info ( time, locate, flg, comment ) values (". $time .",'".  $locate ."',". $flg .", '". $comment ."');";
+
         $res = mysqli_query( $connect, $query );
 
         if( $res ) header( 'Location: index.php' );
