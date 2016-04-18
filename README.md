@@ -24,10 +24,6 @@
 Beanstalk  
 64bit Amazon Linux 2016.03 v2.1.0 running PHP 5.6  
 
-## 要望シート
-[スプレッドシート](https://docs.google.com/spreadsheets/d/1gjovRoQmpOjxHl6hUI74i119Q-2AuHJIJycjsJDpBrk/edit#gid=1292658375)  
-こちらにtwitterやfacebookからの要望が記載されている。
-
 ## 開発メンバー
 菊川 稀玲,
 和泉 信生,
