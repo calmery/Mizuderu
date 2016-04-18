@@ -3,24 +3,26 @@ require_once("../bootstrap.php");
 
 if( isset( $_POST['submit'] ) ){
 
-    $title     = $_POST['title'];
-    $url  = $_POST['url'];
+    $title = h($_POST['title']);
+    $url = $_POST['url'];
 
-    error_log("Post:".$title.",".$url);
+    if( IsUrl($url) ) {
 
-    $err = '不正な値が入力された可能性があります．投稿に失敗しました．';
+        error_log("Post:".$title.",".$url);
 
-    if( $title != '' && $url != ''){
+        $err = '不正な値が入力された可能性があります．投稿に失敗しました．';
 
-        $sql = "INSERT INTO news SET title = :title, url = :url";
-        $params = ["title"    => $title ,
-            "url"  => $url ,
-        ];
+        if( $title != '' && $url != ''){
 
-        DB::conn()->query($sql , $params);
-        header('Location: index.php');
+            $sql = "INSERT INTO news SET title = :title, url = :url";
+            $params = ["title"    => $title ,
+                "url"  => $url ,
+            ];
 
+            DB::conn()->query($sql , $params);
+            header('Location: index.php');
 
+        }
     }
     echo $err .PHP_EOL;
 }
