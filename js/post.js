@@ -71,8 +71,13 @@ function now() {
             var lat = data.latitude,
                 lng = data.longitude
             document.getElementById('locate').value = lat + ',' + lng
-            var latlng = new google.maps.LatLng(lat, lng),
-                flg
+            var latlng = new google.maps.LatLng(lat, lng)
+            var zoom = map.zoom
+            map = new google.maps.Map(m, {
+                center: latlng,
+                zoom: zoom,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
             marker = document.getElementById('flg').value
             if (nowPosition) nowPosition.setMap(null)
             nowPosition = new google.maps.Marker({
