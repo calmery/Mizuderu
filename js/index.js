@@ -69,22 +69,12 @@ function plotNews(t_news) {
 
     if(1 < t_news.length){
         $(".owl-carousel").owlCarousel({
+            items:1,
             loop:true,
             margin:0,
             autoplay:true,
-            autoplayTimeout:2000,
-            autoplayHoverPause:true,
-            responsive:{
-                0:{
-                    items:1
-                },
-                600:{
-                    items:3
-                },
-                1000:{
-                    items:5
-                }
-            }
+            autoplayTimeout:3000,
+            autoplayHoverPause:true
         });
     }else{
         $(".owl-carousel").show();
