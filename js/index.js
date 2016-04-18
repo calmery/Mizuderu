@@ -59,6 +59,34 @@ function closeAllInfoWindows() {
     }
 }
 
+function plotNews(t_news) {
+    for (var i = 0; i < t_news.length; i++) {
+        $("#breaking_news").prepend('<div class="item"><a href="' + t_news[i]['url'] + '" target="_blank">' + t_news[i]['title'] + '</a></div>');
+    }
+
+    if(1 < t_news.length){
+        $(".owl-carousel").owlCarousel({
+            loop:true,
+            margin:0,
+            autoplay:true,
+            autoplayTimeout:2000,
+            autoplayHoverPause:true,
+            responsive:{
+                0:{
+                    items:1
+                },
+                600:{
+                    items:3
+                },
+                1000:{
+                    items:5
+                }
+            }
+        });
+    }else{
+        $(".owl-carousel").show();
+    }
+}
 function plotData(t_position) {
     // index 3 (marker 3) not exist
     var markers = ['no', 'ok', 'go', 'go'];
@@ -145,11 +173,32 @@ $(function () {
     // });
 
     //loadData();
+    loadNews();
 
     $('[name=water_flg]').change(function() {
         loadData();
     });
 });
+
+
+function loadNews(){
+
+    $.ajax({
+            url: 'news_api.php',
+            type: 'get', // getかpostを指定(デフォルトは前者)
+            dataType: 'json', // 「json」を指定するとresponseがJSONとしてパースされたオブジェクトになる
+        })
+        // ・ステータスコードは正常で、dataTypeで定義したようにパース出来たとき
+        .done(function (response) {
+            console.log(response);
+            plotNews(response);
+        })
+        // ・サーバからステータスコード400以上が返ってきたとき
+        // ・ステータスコードは正常だが、dataTypeで定義したようにパース出来なかったとき
+        // ・通信に失敗したとき
+        .fail(function () {
+        });
+}
 
 function loadData(){
 

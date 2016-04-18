@@ -58,3 +58,17 @@ body {
     overflow: auto;
     margin: 5px;
 }
+
+.owl-carousel .item {
+    text-align: center;
+    padding: 7px;
+    background-color: #cccccc;
+    color: black;
+    /*font-weight: bold;*/
+    line-height: 15px;
+    font-size: 11px;
+}
+
+.owl-carousel .item a {
+    color: black;
+}

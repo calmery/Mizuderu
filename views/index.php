@@ -8,6 +8,7 @@
     <meta http-equiv="content-style-type" content="text/css">
     <meta http-equiv="content-script-type" content="text/javascript">
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="css/owl.carousel.css">
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/index.css">
     <!-- OGP -->
@@ -58,13 +59,16 @@
 
 <!-- View map -->
 <div id="map" data-source='<?php echo $json; ?>'></div>
-<div id="customZoomBtn">
-    <div id="small" class="float_l btn">ズームアウト</div>
-    <div id="big" class="float_l btn">ズームイン</div>
-</div>
+<!--<div id="customZoomBtn">-->
+<!--    <div id="small" class="float_l btn">ズームアウト</div>-->
+<!--    <div id="big" class="float_l btn">ズームイン</div>-->
+<!--</div>-->
+<!-- Set up your HTML -->
+<div id="breaking_news" class="owl-carousel"></div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 <script src="js/jquery.ui.touch-punch.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 <script type="text/javascript" src="js/index.js"></script>
 <script type="text/javascript" src="js/timerange.js"></script>
