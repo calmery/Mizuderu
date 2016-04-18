@@ -12,7 +12,7 @@
 </head>
 
 <body>
-
+<?php include_once("analyticstracking.php") ?>
 <form action="<?php print($_SERVER['PHP_SELF']) ?>" enctype="multipart/form-data" method="POST" id="post" onsubmit="return confirm('送信してもいいですか？');">
     <input type="hidden" id="time" name="time" value="">
     <input type="hidden" name="locate" id="locate" value="">

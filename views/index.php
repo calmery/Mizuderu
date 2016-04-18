@@ -24,7 +24,7 @@
     <!-- OGP -->
 </head>
 <body>
-
+<?php include_once("analyticstracking.php") ?>
 <div id="tools">
     <div style="margin:15px 0;text-align:center">
         水道から水が出ていますか？

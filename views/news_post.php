@@ -12,7 +12,7 @@
 </head>
 
 <body>
-
+<?php include_once("analyticstracking.php") ?>
 <form action="<?php print($_SERVER['PHP_SELF']) ?>" method="POST" id="post" onsubmit="return confirm('送信してもいいですか？');">
     <br>
     <h2>ニュース</h2>
