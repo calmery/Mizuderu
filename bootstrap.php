@@ -1,6 +1,10 @@
 <?php
+require 'vendor/autoload.php';
 // Set TimeZone
 date_default_timezone_set('asia/tokyo');
+
+$dotenv = new Dotenv\Dotenv(__DIR__);
+$dotenv->load();
 
 // dir define
 define("APP_ROOT", __DIR__);
