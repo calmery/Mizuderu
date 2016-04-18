@@ -32,7 +32,10 @@ function attachMessage(marker, post_time, flg, comment) {
         }
 
         var comment_str = "";
-        comment_str = comment;
+
+        if(comment != "null"){
+            comment_str = comment;
+        }
 
         new google.maps.Geocoder().geocode({
             latLng: marker.getPosition()
