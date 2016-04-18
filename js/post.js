@@ -8,7 +8,7 @@ document.getElementById('big').addEventListener('click', function () {
 
 // 前画面で保存したデータを削除
 $('#js-submit-button').click(function (e) {
-    sessionStorage.clear();
+    setStorage()
 });
 
 var map,
@@ -32,6 +32,18 @@ map = new google.maps.Map(m, {
 });
 m.style.width = window.innerWidth + 'px';
 m.style.height = window.innerHeight - (document.getElementById('post').clientHeight) - 80 + 'px';
+
+function setStorage(){
+    var currentCenter = map.getCenter();
+    var ss = {
+        lat: currentCenter.lat() || window.DEFAULT_LAT,
+        lng: currentCenter.lng() ||window.DEFAULT_LNG,
+        zoom: map.getZoom() || window.DEFAULT_ZOOM
+    };
+    sessionStorage.setItem('google-map-post-location', JSON.stringify(ss));
+    return ss
+}
+
 var elem = document.getElementById('time'),
     n = new Date()
 // Create time now
@@ -67,42 +79,42 @@ map.addListener('click', function (e) {
 
 function now() {
     navigator.geolocation.getCurrentPosition(function (position) {
-            var data = position.coords
-            var lat = data.latitude,
-                lng = data.longitude
-            document.getElementById('locate').value = lat + ',' + lng
-            var latlng = new google.maps.LatLng(lat, lng)
-            var zoom = map.zoom
-            map = new google.maps.Map(m, {
-                center: latlng,
-                zoom: zoom,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-            });
-            marker = document.getElementById('flg').value
-            if (nowPosition) nowPosition.setMap(null)
-            nowPosition = new google.maps.Marker({
-                position: latlng,
-                map: map,
-                icon: markers[marker] + '.png'
-            })
-            alert('間違いがなければ "投稿" ボタンをクリックしてください．')
-        },
-        function (error) {
-            var errMsg;
-            switch (error.code) {
-                case 1:
-                    errMsg = "位置情報の利用が許可されていません．設定から位置情報の使用を許可してください．";
-                    break;
-                case 2:
-                    errMsg = "デバイスの位置が判定できません．";
-                    break;
-                case 3:
-                    errMsg = "タイムアウトしました．";
-                    break;
-            }
-            alert("位置情報の取得に失敗しました．" + errMsg);
+        var data = position.coords
+        var lat = data.latitude,
+            lng = data.longitude
+        document.getElementById('locate').value = lat + ',' + lng
+        var latlng = new google.maps.LatLng(lat, lng)
+        var zoom = map.zoom
+        map = new google.maps.Map(m, {
+            center: latlng,
+            zoom: zoom,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        });
+        marker = document.getElementById('flg').value
+        if (nowPosition) nowPosition.setMap(null)
+        nowPosition = new google.maps.Marker({
+            position: latlng,
+            map: map,
+            icon: markers[marker] + '.png'
+        })
+        alert('間違いがなければ "投稿" ボタンをクリックしてください．')
+    },
+                                             function (error) {
+        var errMsg;
+        switch (error.code) {
+            case 1:
+                errMsg = "位置情報の利用が許可されていません．設定から位置情報の使用を許可してください．";
+                break;
+            case 2:
+                errMsg = "デバイスの位置が判定できません．";
+                break;
+            case 3:
+                errMsg = "タイムアウトしました．";
+                break;
         }
-    )
+        alert("位置情報の取得に失敗しました．" + errMsg);
+    }
+                                            )
 }
 
 function updateValue() {
