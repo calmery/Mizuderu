@@ -1,37 +1,12 @@
 <?php
-
-date_default_timezone_set('asia/tokyo');
-require_once('dbconnect.php');
-
-$connect = open_db();
-
-mysqli_query($connect, 'SET NAMES utf8');
-mysqli_set_charset($connect, 'utf8');
-
-mysqli_select_db($connect, '');
+require_once("../bootstrap.php");
 
 $now = time();
 $from_time = $now - (60 * 60 * 24 * 2);
-error_log($from_time);
 $query = 'select * from info where time> ' . $from_time . ' order by time desc';
-error_log($query);
-$res = mysqli_query($connect, $query);
+$arr = DB::conn()->rows($query, [$from_time]);
 
-$arr = array();
-while ($data = mysqli_fetch_array($res)) {
-    $arr[] = $data;
-}
-
-//foreach($arr as &$a){
-//    $query = array("latlng" => $a["locate"]);
-//    $res = callApi("GET", "https://maps.googleapis.com/maps/api/geocode/json", $query);
-//
-//    $a["address"] = $res["results"][0]["formatted_address"];
-//}
-
-mysqli_close($connect);
-
-include 'views/list.php';
+include VIEW_DIR. '/list.php';
 
 
 function callApi($method, $url, $data = false)

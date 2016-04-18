@@ -1,4 +1,9 @@
 <?php
+/**
+ * TODO: 使ってるところ見つからなかったのと、DBスキーマ情報がなかったので一旦放置
+ * @KeisukeUtsumi
+ */
+
 
 if( isset( $_POST['submit'] ) ){
 
@@ -11,7 +16,7 @@ if( isset( $_POST['submit'] ) ){
 
     if( $title != '' && $url != ''){
 
-        require_once( 'dbconnect.php' );
+        require_once('dbconnect.php');
 
         $connect = open_db();
         mysqli_query( $connect, 'SET NAMES utf8' );
