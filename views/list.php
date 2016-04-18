@@ -50,6 +50,10 @@
                 $flg_str = '<img src="go.png" > 水の提供可能';
             }
 
+            if($a["comment"] == "null"){
+                $a["comment"] = "";
+            }
+
             echo "<tr>";
             echo "<td>" . $a["Id"] . "</td>";
             echo "<td>" . date("Y/m/d H:i:s", $a["time"]) . "</td>";
