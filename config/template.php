@@ -14,7 +14,7 @@ abstract class BaseTemplate
 /**
  * Class TwigTemplate
  */
-class TwigTemplate
+class TwigTemplate extends BaseTemplate
 {
     public function __construct()
     {
@@ -40,7 +40,7 @@ class Template
     /**
      * テンプレートエンジンの取得
      *
-     * @return DB
+     * @return TwigTemplate
      */
     public static function factory()
     {
