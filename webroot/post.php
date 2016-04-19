@@ -6,8 +6,8 @@ if( isset( $_POST['submit'] ) ){
 
     $time    = time();
     $flg     = VerifyFlag($_POST['flg']);
-    $locate  = $_POST['locate'];
-    $comment = $_POST['comment'];
+    $locate  = h($_POST['locate']);
+    $comment = h($_POST['comment']);
     if (IsLocateString($locate) == false) {
         $err = "経度緯度情報が不正です";
     }
