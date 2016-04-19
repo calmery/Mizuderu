@@ -29,7 +29,7 @@
     <div style="margin:15px 0;text-align:center">
         水道から水が出ていますか？
     </div>
-
+    
     <div class="flex-container">
         <a href="rousui_post.php" id="js-post-button" class="postBtn">
             漏水がありますか？<br>報告する
@@ -68,7 +68,7 @@
 </div>
 
 <!-- View map -->
-<div id="map" data-source='<?php echo $json; ?>'></div>
+<div id="map"></div>
 <!--<div id="customZoomBtn">-->
 <!--    <div id="small" class="float_l btn">ズームアウト</div>-->
 <!--    <div id="big" class="float_l btn">ズームイン</div>-->

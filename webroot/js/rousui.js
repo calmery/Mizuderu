@@ -1,6 +1,3 @@
-var data_source = $('#map').attr('data-source');
-var position = JSON.parse(data_source);
-
 var gmarkers = [];
 var infoWindows = [];
 
@@ -220,7 +217,7 @@ function loadData(start){
     }).get().join(',');
 
     $.ajax({
-            url: 'rousui_api.php',
+            url: 'api.php',
             type: 'get', // getかpostを指定(デフォルトは前者)
             dataType: 'json', // 「json」を指定するとresponseがJSONとしてパースされたオブジェクトになる
             data: { // 送信データを指定(getの場合は自動的にurlの後ろにクエリとして付加される)
@@ -294,8 +291,6 @@ $(function () {
     });
     $("#amount").val((formatDate(new Date($("#slider-range").slider("values", 0) * 1000), "MM月DD日hh時mm分")) +
         " - " + (formatDate(new Date($("#slider-range").slider("values", 1) * 1000), "MM月DD日hh時mm分")));
-
-    plotData(position);
 
     loadData(default_begin);
     loadNews();
