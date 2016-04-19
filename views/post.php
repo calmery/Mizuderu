@@ -25,6 +25,9 @@
 
 <body>
 <?php include_once("analyticstracking.php") ?>
+<div style="margin:15px 0;text-align:center">
+    水道から水が出ていますか？
+</div>
 <form action="<?php print($_SERVER['PHP_SELF']) ?>" method="POST" id="post" onsubmit="return confirm('送信してもいいですか？');">
     <input type="hidden" id="time" name="time" value="">
     <input type="hidden" name="locate" id="locate" value="">

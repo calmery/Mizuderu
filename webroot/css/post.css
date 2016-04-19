@@ -32,3 +32,7 @@ input[type=submit] {
     line-height: 28pt;
     text-align: center;
 }
+
+.half-char-margin {
+    margin-bottom: 0.5em;
+}
