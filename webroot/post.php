@@ -6,8 +6,8 @@ if( isset( $_POST['submit'] ) ){
 
     $time    = time();
     $flg     = VerifyFlag($_POST['flg']);
-    $locate  = h($_POST['locate']);
-    $comment = h($_POST['comment']);
+    $locate  = $_POST['locate'];
+    $comment = $_POST['comment'];
     if (IsLocateString($locate) == false) {
         $err = "経度緯度情報が不正です";
     }
@@ -15,7 +15,7 @@ if( isset( $_POST['submit'] ) ){
     if ($err === "") {
 
         $query = array(
-            "latlng" => $locate,
+            "latlng" => h($locate),
             "language" => "ja",
             "sensor" => false
         );
