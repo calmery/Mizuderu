@@ -12,7 +12,6 @@ if( isset( $_POST['submit'] ) ){
     }
 
     if ($err === "") {
-
         $image_url = "";
         if(isset($_FILES["image"])) {
             // アップロード処理
@@ -22,7 +21,7 @@ if( isset( $_POST['submit'] ) ){
                 die('ファイルがアップロードされていません');
             }
             $result = s3Upload($file, '');
-
+            
             if($result){
                 $image_url = $result['ObjectURL'];
             }
@@ -37,16 +36,17 @@ if( isset( $_POST['submit'] ) ){
 
         $address= $res["results"][0]["formatted_address"];
 
-        $sql = "INSERT INTO rousui SET time = :time, locate = :locate, comment = :comment, image_url = :image_url, address = :address";
+        $sql = "INSERT INTO rousui SET time = :time, locate = :locate, comment = :comment, image_url = :image_url, address = :address, flg = :flg";
         $params = ["time"    => $time ,
             "locate"  => $locate ,
             "comment" => $comment ,
             "image_url" => $image_url,
             "address" => $address,
+            "flg" => 4,
         ];
 
         DB::conn()->query($sql , $params);
-        header('Location: index.php');
+        header('Location: rousui.php');
     }
     echo $err .PHP_EOL;
 }

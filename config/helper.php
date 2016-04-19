@@ -39,14 +39,14 @@ function s3Upload($file, $s3Dir) {
             'Bucket'       => getenv('AWS_BUCKET_NAME'),
             'Key'        => $name,
             'SourceFile' => $srcPath,
-            'ContentType'  => '	image/jpeg',
             'ACL'          => 'public-read',
         ));
+
         return $result;
     }catch (RuntimeException $e){
         return false;
     }
-    
+
 }
 
 /**

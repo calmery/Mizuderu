@@ -66,7 +66,7 @@
         nowPosition = new google.maps.Marker({
             position: latlng,
             map: map,
-            icon: 'no.png'
+            icon: 'rousui.png'
         });
     }
 
@@ -88,7 +88,7 @@
                 map.addListener('click', mapClickListener);
                 if (nowPosition) nowPosition.setMap(null);
 
-                nowPosition = createMapMarker(latlng, map, "no");
+                nowPosition = createMapMarker(latlng, map, "rousui");
 
                 alert('間違いがなければ "投稿" ボタンをクリックしてください．');
             },
@@ -126,7 +126,7 @@
         nowPosition = new google.maps.Marker({
             position: new google.maps.LatLng(n1, n2),
             map: map,
-            icon: 'no.png'
+            icon: 'rousui.png'
         });
         return true;
     }
