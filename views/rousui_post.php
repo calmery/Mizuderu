@@ -40,7 +40,7 @@
     </div>
     <div class="box">
         <div class="memo-title">２．漏水箇所の情報を入力する</div>
-        <textarea id="comment" name="comment" value=""></textarea>
+        <textarea id="comment" name="comment"></textarea>
     </div>
     <div class="box">
         <div class="memo-title">３．写真があれば添付してください</div>
