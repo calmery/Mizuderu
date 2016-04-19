@@ -52,7 +52,7 @@ function attachMessage(marker, post_time, flg, comment, rousui_image_url) {
         var rousui_img = "";
         // 漏水の画像があるなら表示
         if(flg == "rousui" && rousui_image_url !== "" && rousui_image_url !== null && rousui_image_url != "undefined"){
-            rousui_img = "<br>" + "<img src='" + rousui_image_url + "' alt='' >";
+            rousui_img = "<br>" + "<img src='" + rousui_image_url + "' width='200' alt='' >";
         }
 
         new google.maps.Geocoder().geocode({
