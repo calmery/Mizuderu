@@ -26,7 +26,7 @@
 <body>
 <?php include_once("analyticstracking.php") ?>
 <div style="margin:15px 0;text-align:center">
-    漏水を報告してください
+    水漏れを報告する
 </div>
 <form action="<?php print($_SERVER['PHP_SELF']) ?>" enctype="multipart/form-data" method="POST" id="post" onsubmit="return confirm('送信してもいいですか？');">
     <input type="hidden" id="time" name="time" value="">
@@ -39,12 +39,15 @@
         <div class="memo">本体の設定から位置情報の利用を許可してください．</div>
     </div>
     <div class="box">
-        <div class="memo-title">２．漏水箇所の情報を入力する</div>
+        <div class="memo-title">２．水漏れ箇所の情報を入力する</div>
         <textarea id="comment" name="comment"></textarea>
     </div>
     <div class="box">
         <div class="memo-title">３．写真があれば添付してください</div>
-        <input type="file" id="image" name="image" value="">
+        <label class="button-file">
+            <input type="file" class="hide" id="image" name="image" value="">
+            写真を選ぶ
+        </label>
     </div>
     <div class="box-mini">
         <input type="submit" id="js-submit-button" name="submit" value="投稿">
