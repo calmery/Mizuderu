@@ -65,3 +65,13 @@ function getDateRound($date, $place, $math) {
     return date('Y-m-d H:i:s', mktime($H, $i, $s, $m, $d, $Y));
 }
 
+/**
+ *
+ * HTML特殊文字エスケープのエイリアス
+ *
+ * @param string $str
+ * @return string
+ */
+function h($str) {
+    return htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
+}

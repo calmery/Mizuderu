@@ -57,10 +57,10 @@
             echo "<tr>";
             echo "<td>" . $a["Id"] . "</td>";
             echo "<td>" . date("Y/m/d H:i:s", $a["time"]) . "</td>";
-            echo "<td>" . $a["locate"] . "</td>";
-            echo "<td>" . $a["address"] . "</td>";
+            echo "<td>" . h($a["locate"]) . "</td>";
+            echo "<td>" . h($a["address"]) . "</td>";
             echo "<td>" . $flg_str . "</td>";
-            echo "<td>" . $a["comment"] . "</td>";
+            echo "<td>" . h($a["comment"]) . "</td>";
             echo "</tr>";
         }
         ?>
