@@ -30,3 +30,13 @@ function IsLocateString($locate) {
     return false;
 }
 
+
+/**
+ * URLとして妥当かチェックする
+ * @param url
+ *
+ * @return boolean
+ */
+function IsUrl($url) {
+    return filter_var($url, FILTER_VALIDATE_URL) !== false;
+}
