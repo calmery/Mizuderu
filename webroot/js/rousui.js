@@ -5,7 +5,7 @@ var gmarkers = [];
 var infoWindows = [];
 
 var tools_height = document.getElementById('tools').clientHeight;
-function attachMessage(marker, post_time, flg, comment) {
+function attachMessage(marker, post_time, flg, comment, rousui_image_url) {
     google.maps.event.addListener(marker, 'click', function (event) {
 
         var t = new Date(post_time * 1000);
@@ -48,6 +48,13 @@ function attachMessage(marker, post_time, flg, comment) {
             del_str = "<br><br>" + "<a href='' onclick='document.del.submit();return false;'>この情報を削除する</a>" + "<form name='del' method='POST' action='delete.php'>" + "<input type=hidden name='post_time' value='" + post_time +"'> ";
         }
 
+
+        var rousui_img = "";
+        // 漏水の画像があるなら表示
+        if(flg == "rousui" && rousui_image_url !== "" && rousui_image_url !== null && rousui_image_url != "undefined"){
+            rousui_img = "<br>" + "<img src='" + rousui_image_url + "' alt='' >";
+        }
+
         new google.maps.Geocoder().geocode({
             latLng: marker.getPosition()
         }, function (result, status) {
@@ -56,7 +63,7 @@ function attachMessage(marker, post_time, flg, comment) {
                 closeAllInfoWindows();
 
                 var ifw = new google.maps.InfoWindow({
-                    content: "<div class='infowin'>" + formattedTime + "<br>" + flg_str + " " + comment_str + "<br>" + result[0].formatted_address + del_str + "</div>"
+                    content: "<div class='infowin'>" + formattedTime + "<br>" + flg_str + " " + comment_str + "<br>" + result[0].formatted_address + del_str + rousui_img + "</div>"
                 });
 
                 ifw.open(marker.getMap(), marker);
@@ -154,6 +161,7 @@ function plotData(t_position) {
         data = t_position[i]['locate'].split(/,/)
         post_time = t_position[i]['time'];
         comment = t_position[i]['comment'];
+        rousui_image_url = t_position[i]['image_url'];
 
         if (t_position[i]['flg'] == 0) {
             no_count++;
@@ -173,7 +181,7 @@ function plotData(t_position) {
             icon: markers[t_position[i].flg] + '.png'
         });
         gmarkers.push(myMarker);
-        attachMessage(myMarker, post_time, markers[t_position[i].flg], comment);
+        attachMessage(myMarker, post_time, markers[t_position[i].flg], comment, rousui_image_url);
     }
     $("#no_count").text("(" + no_count + ")");
     $("#ok_count").text("(" + ok_count + ")");
