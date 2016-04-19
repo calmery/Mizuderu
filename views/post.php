@@ -41,23 +41,19 @@
         </select>
     </div>
     <div id='now' class="box">
-        <a href="javascript:void(0)" onclick="now()">現在位置を設定</a>
-        <br>
-        <br>
-        <span class="memo">本体の設定から位置情報の利用を許可してください．</span>
+        <div class="memo-title">
+            <a href="javascript:void(0)" onclick="now()">１．位置を設定する</a>
+        </div>
+        <div class="memo">本体の設定から位置情報の利用を許可してください．</div>
     </div>
-<!--    <div class="box">-->
-<!--        <span class="memo">画像アップロード</span><br>-->
-<!--        <input type="file" id="image" name="image" value="">-->
-<!--    </div>-->
     <div class="box">
-        <span class="memo">一言コメントを添付できます．</span><br>
-        <input type="text" id="comment" name="comment" value="">
+        <div class="memo-title">２．コメントがあればご記入ください</div>
+        <textarea id="comment" name="comment" value=""></textarea>
     </div>
     <div class="box">
         <input type="submit" id="js-submit-button" name="submit" value="投稿">
     </div>
-    <div class="box">
+    <div class="patchworks">
         <span class="memo">sojo univ. patchworks</span>
     </div>
 </form>

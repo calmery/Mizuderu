@@ -19,6 +19,15 @@ input[type=submit] {
     margin-bottom: 20px;
 }
 
+.patchworks {
+    margin-bottom: 1em;
+}
+
+.memo-title {
+    font-size: 14px;
+    margin-bottom: 0.5em;
+}
+
 .memo {
     font-size: 10px
 }
@@ -31,8 +40,4 @@ input[type=submit] {
     background: rgba(240, 240, 240, 1);
     line-height: 28pt;
     text-align: center;
-}
-
-.half-char-margin {
-    margin-bottom: 0.5em;
 }

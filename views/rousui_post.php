@@ -33,23 +33,23 @@
     <input type="hidden" name="locate" id="locate" value="">
 
     <div id='now' class="box">
-        <a href="javascript:void(0)" onclick="now()">位置を設定する</a>
-        <br>
-        <br>
-        <span class="memo">本体の設定から位置情報の利用を許可してください．</span>
+        <div class="memo-title">
+            <a href="javascript:void(0)" onclick="now()">１．位置を設定する</a>
+        </div>
+        <div class="memo">本体の設定から位置情報の利用を許可してください．</div>
     </div>
     <div class="box">
-        <div class="memo half-char-margin">漏水箇所の情報を入力する</div>
+        <div class="memo-title">２．漏水箇所の情報を入力する</div>
         <textarea id="comment" name="comment" value=""></textarea>
     </div>
     <div class="box">
-        <div class="memo half-char-margin">写真があれば添付してください</div>
+        <div class="memo-title">３．写真があれば添付してください</div>
         <input type="file" id="image" name="image" value="">
     </div>
     <div class="box">
         <input type="submit" id="js-submit-button" name="submit" value="投稿">
     </div>
-    <div class="box">
+    <div class="patchworks">
         <span class="memo">sojo univ. patchworks</span>
     </div>
 </form>
