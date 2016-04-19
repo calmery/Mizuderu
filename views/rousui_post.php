@@ -46,7 +46,7 @@
         <div class="memo-title">３．写真があれば添付してください</div>
         <input type="file" id="image" name="image" value="">
     </div>
-    <div class="box">
+    <div class="box-mini">
         <input type="submit" id="js-submit-button" name="submit" value="投稿">
     </div>
     <div class="patchworks">

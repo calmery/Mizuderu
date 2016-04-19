@@ -50,7 +50,7 @@
         <div class="memo-title">２．コメントがあればご記入ください</div>
         <textarea id="comment" name="comment" value=""></textarea>
     </div>
-    <div class="box">
+    <div class="box-mini">
         <input type="submit" id="js-submit-button" name="submit" value="投稿">
     </div>
     <div class="patchworks">
