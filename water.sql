@@ -1,7 +1,7 @@
 -- Create syntax for TABLE 'info'
 CREATE TABLE `info` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `time` int(20) DEFAULT NULL,
+  `time` int(11) DEFAULT NULL,
   `locate` varchar(64) DEFAULT NULL,
   `flg` int(1) DEFAULT NULL,
   `comment` text,
@@ -34,6 +34,7 @@ CREATE TABLE `rousui` (
   `time` int(20) DEFAULT NULL,
   `locate` varchar(64) DEFAULT NULL,
   `image_url` varchar(255) DEFAULT NULL,
+  `flg` int(1) DEFAULT NULL,
   `comment` text,
   `address` text,
   PRIMARY KEY (`Id`)
