@@ -57,17 +57,16 @@
     map.addListener('click', mapClickListener);
 
     function mapClickListener (e) {
-        alert('位置を変更しました．間違いがなければ "投稿" ボタンをクリックしてください．');
         var latlng = e.latLng;
         // Get status
         // console.log( 'set position : ', e )
         if (nowPosition) nowPosition.setMap(null);
         document.getElementById('locate').value = latlng.lat() + ',' + latlng.lng();
-        nowPosition = new google.maps.Marker({
-            position: latlng,
-            map: map,
-            icon: 'rousui.png'
-        });
+        nowPosition = createMapMarker(latlng, map, "rousui");
+
+        setTimeout(function () {
+            alert('間違いがなければ "投稿" ボタンをクリックしてください．');
+        }, 100);
     }
 
     // 現在位置を設定
@@ -78,19 +77,13 @@
                 var lng  = data.longitude;
                 document.getElementById('locate').value = lat + ',' + lng;
                 var latlng = new google.maps.LatLng(lat, lng);
-                var zoom = map.zoom;
 
-                map = new google.maps.Map(mapDom, {
-                    center: latlng,
-                    zoom: zoom,
-                    mapTypeId: google.maps.MapTypeId.ROADMAP
-                });
-                map.addListener('click', mapClickListener);
                 if (nowPosition) nowPosition.setMap(null);
-
                 nowPosition = createMapMarker(latlng, map, "rousui");
 
-                alert('間違いがなければ "投稿" ボタンをクリックしてください．');
+                setTimeout(function () {
+                    alert('間違いがなければ "投稿" ボタンをクリックしてください．');
+                }, 100);
             },
             function (error) {
                 var errMsg;
