@@ -29,7 +29,7 @@ function attachMessage(marker, post_time, flg, comment, rousui_image_url) {
         } else if (flg == "notdrink") {
             flg_str = '<img src="notdrink.png" > 水出るが飲めない';
         } else if (flg == "rousui") {
-            flg_str = '<img src="rousui.png" > 漏水';
+            flg_str = '<img src="rousui.png" > 水漏れ';
         }
 
         var comment_str = "";
