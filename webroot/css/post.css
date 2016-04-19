@@ -19,6 +19,10 @@ input[type=submit] {
     margin-bottom: 20px;
 }
 
+.box-mini {
+    margin: 10px 0;
+}
+
 .patchworks {
     margin-bottom: 1em;
 }
