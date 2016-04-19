@@ -26,7 +26,7 @@
 <body>
 <?php include_once("analyticstracking.php") ?>
 <div style="margin:15px 0;text-align:center">
-    水漏れを報告する
+    水漏れを報告してください
 </div>
 <form action="<?php print($_SERVER['PHP_SELF']) ?>" enctype="multipart/form-data" method="POST" id="post" onsubmit="return confirm('送信してもいいですか？');">
     <input type="hidden" id="time" name="time" value="">
