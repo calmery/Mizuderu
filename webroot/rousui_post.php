@@ -32,7 +32,7 @@ if( isset( $_POST['submit'] ) ){
             }
         }
 
-        if ($image_url === "") {
+        if ($image_url !== "") {
 
             $query = array(
                 "latlng" => h($locate),
