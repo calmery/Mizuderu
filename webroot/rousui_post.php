@@ -36,12 +36,13 @@ if( isset( $_POST['submit'] ) ){
 
         $address= $res["results"][0]["formatted_address"];
 
-        $sql = "INSERT INTO rousui SET time = :time, locate = :locate, comment = :comment, image_url = :image_url, address = :address";
+        $sql = "INSERT INTO rousui SET time = :time, locate = :locate, comment = :comment, image_url = :image_url, address = :address, flg = :flg";
         $params = ["time"    => $time ,
             "locate"  => $locate ,
             "comment" => $comment ,
             "image_url" => $image_url,
             "address" => $address,
+            "flg" => 4,
         ];
 
         DB::conn()->query($sql , $params);
