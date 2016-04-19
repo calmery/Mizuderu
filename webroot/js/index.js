@@ -29,6 +29,8 @@ function attachMessage(marker, post_time, flg, comment) {
             flg_str = '<img src="ok.png" > 水が出る';
         } else if (flg == "go") {
             flg_str = '<img src="go.png" > 水の提供可能';
+        } else if (flg == "notdrink") {
+            flg_str = '<img src="notdrink.png" > 飲水不可';
         }
 
         var comment_str = "";
@@ -82,7 +84,7 @@ function plotNews(t_news) {
 }
 function plotData(t_position) {
     // index 3 (marker 3) not exist
-    var markers = ['no', 'ok', 'go', 'go'];
+    var markers = ['no', 'ok', 'go', 'notdrink'];
 
     var m = document.getElementById('map');
     window.DEFAULT_LAT = 32.7858659;
@@ -138,7 +140,7 @@ function plotData(t_position) {
     removeMarkers();
 
     var data;
-    var no_count = 0, ok_count = 0, go_count = 0;
+    var no_count = 0, ok_count = 0, go_count = 0, notdrink_count = 0;
     for (var i = 0; i < t_position.length; i++) {
         data = t_position[i]['locate'].split(/,/)
         post_time = t_position[i]['time'];
@@ -150,6 +152,8 @@ function plotData(t_position) {
             ok_count++;
         } else if (t_position[i]['flg'] == 2) {
             go_count++;
+        } else if (t_position[i]['flg'] == 3) {
+            notdrink_count++;
         }
 
         var myMarker = new google.maps.Marker({
@@ -163,6 +167,7 @@ function plotData(t_position) {
     $("#no_count").text("(" + no_count + ")");
     $("#ok_count").text("(" + ok_count + ")");
     $("#go_count").text("(" + go_count + ")");
+    $("#notdrink_count").text("(" + notdrink_count + ")");
 }
 // DOMを全て読み込んだあとに実行される
 $(function () {

@@ -48,6 +48,8 @@
                 $flg_str = '<img src="ok.png" > 水が出る';
             } elseif ($a["flg"] == 2) {
                 $flg_str = '<img src="go.png" > 水の提供可能';
+            } elseif ($a["flg"] == 3) {
+                $flg_str = '<img src="notdrink.png" > 飲水不可';
             }
 
             if($a["comment"] == "null"){
