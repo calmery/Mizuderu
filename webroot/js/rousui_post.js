@@ -20,7 +20,11 @@
 
     var currentMap; // 前の画面から表示データを取得する
     try {
-        currentMap = JSON.parse(sessionStorage.getItem('google-map-post-location'));
+        if (!!sessionStorage.getItem('google-map-post-location')) {
+            currentMap = JSON.parse(sessionStorage.getItem('google-map-post-location'));
+        } else {
+            currentMap = {};
+        }
     } catch (e) {
         console.error(e);
     }
