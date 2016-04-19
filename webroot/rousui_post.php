@@ -12,7 +12,6 @@ if( isset( $_POST['submit'] ) ){
     }
 
     if ($err === "") {
-
         $image_url = "";
         if(isset($_FILES["image"])) {
             // アップロード処理
@@ -22,7 +21,7 @@ if( isset( $_POST['submit'] ) ){
                 die('ファイルがアップロードされていません');
             }
             $result = s3Upload($file, '');
-
+            
             if($result){
                 $image_url = $result['ObjectURL'];
             }
