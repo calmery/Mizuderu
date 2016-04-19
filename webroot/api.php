@@ -10,25 +10,34 @@ $end = strtotime(date("Y-m-d H:i:s", (int)$end));
 $from_time = strtotime(date("Y-m-d H:i:s", (int)$from_time));
 
 
-$sql = "SELECT * FROM info WHERE time > ? AND time < ?";
 $params = [
     $from_time,
     $end
 ];
-
+$r_rows = [];
+$rows =[];
 if (count($flgs) > 0 && ($flgs[0]) != "") {
+
+    // rousui table
+    if(array_search(4, $flgs)){
+        $sql = "SELECT * FROM rousui WHERE time > ? AND time < ?";
+        $r_rows = DB::conn()->rows($sql, $params);
+    }
+
+    // info table
+    $sql = "SELECT * FROM info WHERE time > ? AND time < ?";
     $sql .= " AND flg IN(?)";
     $f = [];
     foreach ($flgs as $flg) {
         $f[] = VerifyFlag($flg);
     }
     $params[] = $f;
-} else {
-    $sql .= " AND flg NOT IN(0,1,2,3)";
+
+    $rows = DB::conn()->rows($sql, $params);
 }
 
-$rows = DB::conn()->rows($sql, $params);
+$result = array_merge($r_rows, $rows);
 
-$json = json_safe_encode($rows);
+$json = json_safe_encode($result);
 
 echo $json;

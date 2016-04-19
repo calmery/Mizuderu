@@ -73,7 +73,7 @@
 <script src="js/jquery.ui.touch-punch.min.js"></script>
 <script src="js/owl.carousel.min.js"></script>
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/rousui.js"></script>
 <script>
     $( "#range-toggle" ).click(function() {
         $( "#filter_options" ).toggle( "fold", 1000 );

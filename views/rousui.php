@@ -30,7 +30,7 @@
         水道から水が出ていますか？
     </div>
 
-    <a href="rousui.php" id="js-post-button">
+    <a href="rousui_post.php" id="js-post-button">
         <div id="postBtn">投稿する</div>
     </a>
 
@@ -63,7 +63,7 @@
 </div>
 
 <!-- View map -->
-<div id="map" data-source='<?php echo $json; ?>'></div>
+<div id="map"></div>
 <!--<div id="customZoomBtn">-->
 <!--    <div id="small" class="float_l btn">ズームアウト</div>-->
 <!--    <div id="big" class="float_l btn">ズームイン</div>-->
