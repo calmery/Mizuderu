@@ -25,28 +25,20 @@
 
 <body>
 <?php include_once("analyticstracking.php") ?>
-<form action="<?php print($_SERVER['PHP_SELF']) ?>" method="POST" id="post" onsubmit="return confirm('送信してもいいですか？');">
+<form action="<?php print($_SERVER['PHP_SELF']) ?>" enctype="multipart/form-data" method="POST" id="post" onsubmit="return confirm('送信してもいいですか？');">
     <input type="hidden" id="time" name="time" value="">
     <input type="hidden" name="locate" id="locate" value="">
 
-    <div class="box">
-        <select name="flg" id="flg" onchange="updateValue()">
-            <option value="0" selected>水が出ない</option>
-            <option value="1">水が出る</option>
-            <option value="2">水の提供ができる</option>
-            <option value="3">水出るが飲めない</option>
-        </select>
-    </div>
     <div id='now' class="box">
         <a href="javascript:void(0)" onclick="now()">現在位置を設定</a>
         <br>
         <br>
         <span class="memo">本体の設定から位置情報の利用を許可してください．</span>
     </div>
-<!--    <div class="box">-->
-<!--        <span class="memo">画像アップロード</span><br>-->
-<!--        <input type="file" id="image" name="image" value="">-->
-<!--    </div>-->
+    <div class="box">
+        <span class="memo">画像アップロード</span><br>
+        <input type="file" id="image" name="image" value="">
+    </div>
     <div class="box">
         <span class="memo">一言コメントを添付できます．</span><br>
         <input type="text" id="comment" name="comment" value="">
@@ -66,7 +58,7 @@
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-<script type="text/javascript" src="js/post.js"></script>
+<script type="text/javascript" src="js/rousui_post.js"></script>
 
 </body>
 
