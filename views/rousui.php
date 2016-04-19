@@ -30,7 +30,7 @@
         水道から水が出ていますか？
     </div>
 
-    <a href="post.php" id="js-post-button">
+    <a href="rousui.php" id="js-post-button">
         <div id="postBtn">投稿する</div>
     </a>
 

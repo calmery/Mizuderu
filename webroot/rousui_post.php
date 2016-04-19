@@ -46,7 +46,7 @@ if( isset( $_POST['submit'] ) ){
         ];
 
         DB::conn()->query($sql , $params);
-        header('Location: index.php');
+        header('Location: rousui.php');
     }
     echo $err .PHP_EOL;
 }
