@@ -12,9 +12,9 @@ $from_time = strtotime(getDateRound(date("Y-m-d H:i:s", $rows[0]['time']), 100, 
 $now = strtotime(getDateRound(date("Y-m-d H:i:s", $now), 100, "ceil"));
 $json = json_safe_encode($rows);
 
-
-include VIEW_DIR.'/index.php';
-
-
-
-
+$template = Template::factory();
+echo $template->render('index.html', array(
+    'json' => $json,
+    'from_time' => $from_time,
+    'now' => $now,
+));
