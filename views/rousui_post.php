@@ -44,7 +44,10 @@
     </div>
     <div class="box">
         <div class="memo-title">３．写真があれば添付してください</div>
-        <input type="file" id="image" name="image" value="">
+        <label class="button-file">
+            <input type="file" class="hide" id="image" name="image" value="">
+            写真を選ぶ
+        </label>
     </div>
     <div class="box-mini">
         <input type="submit" id="js-submit-button" name="submit" value="投稿">
