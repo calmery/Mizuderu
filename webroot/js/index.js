@@ -295,6 +295,8 @@ $(function () {
     loadData(default_begin);
     loadNews();
 
+    $("#start").val(default_begin);
+
     $('[name=water_flg]').change(function() {
         loadData();
     });
