@@ -1,6 +1,5 @@
 <?php
 require_once("../bootstrap.php");
-
 if( isset( $_POST['submit'] ) ){
     $err = "";
 
@@ -24,8 +23,15 @@ if( isset( $_POST['submit'] ) ){
             if (!IsImage($file)) {
                 die('画像はJPEG(jpg,jpeg)、GIF(gif)、PNG(png)のいずれかとなっております。');
             }
+            $savePath = safeImage($file["tmp_name"], TMP_DIR);
+            if ( $savePath === "" ){
+                die("不正な画像がuploadされました");
+            }
 
-            $result = s3Upload($file, '');
+            //$result = s3Upload($savePath, '');
+
+            // 書きだした画像を削除
+            @unlink($savePath);
 
             if($result){
                 $image_url = $result['ObjectURL'];
