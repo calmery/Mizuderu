@@ -28,7 +28,7 @@ if( isset( $_POST['submit'] ) ){
                 die("不正な画像がuploadされました");
             }
 
-            //$result = s3Upload($savePath, '');
+            $result = s3Upload($savePath, '');
 
             // 書きだした画像を削除
             @unlink($savePath);
