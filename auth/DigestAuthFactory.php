@@ -14,6 +14,6 @@ class DigestAuthFactory
             new DigestAuthUser(getenv('DIGEST_AUTH_USER'), getenv('DIGEST_AUTH_PASSWORD'))
         ];
 
-        return new DigestAuth($users, 'Restricted Area');
+        return new DigestAuth($users, getenv('DIGEST_AUTH_REALM'));
     }
 }
