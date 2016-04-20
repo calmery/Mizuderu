@@ -17,9 +17,8 @@ function extension($filename) {
 
 function s3Upload($file, $s3Dir) {
 
-
-    $ext = extension($file['name']);
-    $srcPath = $file['tmp_name'];
+    $ext = extension($file);
+    $srcPath = $file;
 
     $timestamp = uniqid();
     $name = $timestamp . "_file." . $ext;
