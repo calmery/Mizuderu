@@ -59,12 +59,12 @@ class DigestAuth
         // PHP_AUTH_DIGESTをパース
         $data = $this->parseHttpDigest($params[self::PARAM_KEY]);
         if ($data === false) {
-            return new DigestAuthResult(DigestAuthResult::FAILURE, null, '認証に失敗しました1');
+            return new DigestAuthResult(DigestAuthResult::FAILURE, null, '認証に失敗しました');
         }
 
         // ユーザー存在チェック
         if (!array_key_exists($data['username'], $this->users)) {
-            return new DigestAuthResult(DigestAuthResult::FAILURE, null, '認証に失敗しました2');
+            return new DigestAuthResult(DigestAuthResult::FAILURE, null, '認証に失敗しました');
         }
 
 
@@ -76,7 +76,7 @@ class DigestAuth
 
         // 正当性チェック
         if ($data['response'] !== $validResponse) {
-            return new DigestAuthResult(DigestAuthResult::FAILURE, null, '認証に失敗しました3');
+            return new DigestAuthResult(DigestAuthResult::FAILURE, null, '認証に失敗しました');
         }
 
         return new DigestAuthResult(DigestAuthResult::SUCCESS, $user);
