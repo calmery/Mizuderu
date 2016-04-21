@@ -166,6 +166,8 @@ function callApi($method, $url, $data = false){
     return json_decode($result, true);
 }
 
+
+require_once AUTH_DIR . '/AntiCSRF.php';
 use Mizuderu\Auth\AntiCSRF;
 
 /**

@@ -56,7 +56,9 @@ function attachMessage(marker, post_time, flg, comment, rousui_image_url, rousui
         var del_str = "";
         //5分以内なら削除可能
         if(flg != "rousui" && parseInt(now.getTime() / 1000) < (parseInt(post_time) + (60 * 5))){
-            del_str = "<br><br>" + "<a href='' onclick='document.del.submit();return false;'>この情報を削除する</a>" + "<form name='del' method='POST' action='delete.php'>" + "<input type=hidden name='post_time' value='" + post_time +"'> ";
+
+            var csrf_token = $("meta[name='csrf-token']").attr("content");
+            del_str = "<br><br>" + "<a href='' onclick='document.del.submit();return false;'>この情報を削除する</a>" + "<form name='del' method='POST' action='delete.php'>" + "<input type=hidden name='_token' value='" + csrf_token +"'> " + "<input type=hidden name='post_time' value='" + post_time +"'> ";
         }
 
         new google.maps.Geocoder().geocode({
