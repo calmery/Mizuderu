@@ -2,8 +2,6 @@
 
 class AntiCSRF {
 
-    const SALT_ENV_KEY = 'ANTI_CSRF_SALT';
-
     /**
      * @var string
      */
