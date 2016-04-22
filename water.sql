@@ -10,7 +10,7 @@ CREATE TABLE `info` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Add index for time column
-ALTER TABLE info ADD INDEX index_name(time);
+ALTER TABLE info ADD INDEX index_time(time);
 
 -- Create syntax for TABLE 'logs'
 CREATE TABLE `logs` (
