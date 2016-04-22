@@ -25,8 +25,9 @@ if (count($flgs) > 0 && ($flgs[0]) != "") {
     //}
 
     // info table
-    $sql = "SELECT * FROM info WHERE time > ? AND time < ?";
+    $sql = "SELECT * FROM info WHERE time > ? AND time < ? ";
     $sql .= " AND flg IN(?)";
+    $sql .= " ORDER BY time DESC LIMIT 1000";
     $f = [];
     foreach ($flgs as $flg) {
         $f[] = VerifyFlag($flg);
