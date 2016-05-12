@@ -19,7 +19,7 @@ class MemcachedSessionSetting extends SessionSetting
 {
     public function initialize()
     {
-//        ini_set('session.save_handler', 'memcached');
+        ini_set('session.save_handler', 'memcached');
         ini_set('session.save_path', $this->settings['save_path']);
         ini_set('session.gc_maxlifetime', $this->settings['maxlifetime']);
     }
