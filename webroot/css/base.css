@@ -107,3 +107,7 @@ table,th,td,img {
 .clearfix {
     min-height:1px;
 }
+
+#breaking_news {
+    display: none;
+}
